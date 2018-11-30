@@ -1,0 +1,646 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<title>www.Mon-Club-Elec.fr | MAIN / ArduinoExpertSerieCanGraphiquePC </title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<link href="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/rounded.css" type="text/css" rel="stylesheet">
+<!--HTMLHeader--><style type="text/css"><!--
+  ul, ol, pre, dl, p { margin-top:0px; margin-bottom:0px; }
+  code.escaped { white-space: nowrap; }
+  .vspace { margin-top:1.33em; }
+  .indent { margin-left:40px; }
+  .outdent { margin-left:40px; text-indent:-40px; }
+  a.createlinktext { text-decoration:none; border-bottom:1px dotted gray; }
+  a.createlink { text-decoration:none; position:relative; top:-0.5em;
+    font-weight:bold; font-size:smaller; border-bottom:none; }
+  img { border:0px; }
+  
+span.anchor {
+	float: left;
+	font-size: 60%;
+	margin-left: -1em;
+	width: 1em;
+    position:relative; top:-0.1em;
+	text-align: center;
+}
+span.anchor a { text-decoration: none; }
+span.anchor a:hover { text-decoration: underline; }
+ol.toc { text-indent:-25px; list-style: none; margin-bottom:5px; }
+ol ol.toc { margin-left:-24px; text-indent:-24px; }
+div.tocfloat { font-size: smaller; margin-bottom: 10px;
+    border-top: 1px dotted #555555; border-bottom: 1px dotted #555555;
+    padding-top: 5px; 
+    width: 38%; float: right; margin-left: 10px; clear: right;
+    margin-right:-21px; padding-right: 13px; padding-left: 13px;
+    background-color: #eeeeee; }
+div.toc { font-size: smaller; 
+    border: 1px dotted #cccccc;
+    background: #f7f7f7;
+    margin-bottom: 10px; }
+div.toc p { background-color: #f9f6d6;
+    padding: 5px;
+    border-bottom:  1px dotted #cccccc; }.editconflict { color:green; 
+  font-style:italic; margin-top:1.33em; margin-bottom:1.33em; }
+
+  table.markup { border:2px dotted #ccf; width:90%; }
+  td.markup1, td.markup2 { padding-left:10px; padding-right:10px; }
+  table.vert td.markup1 { border-bottom:1px solid #ccf; }
+  table.horiz td.markup1 { width:23em; border-right:1px solid #ccf; }
+  table.markup caption { text-align:left; }
+  div.faq p, div.faq pre { margin-left:2em; }
+  div.faq p.question { margin:1em 0 0.75em 0; font-weight:bold; }
+  div.faqtoc div.faq * { display:none; }
+  div.faqtoc div.faq p.question 
+    { display:block; font-weight:normal; margin:0.5em 0 0.5em 20px; line-height:normal; }
+  div.faqtoc div.faq p.question * { display:inline; }
+   
+    .frame 
+      { border:1px solid #cccccc; padding:4px; background-color:#f9f9f9; }
+    .lfloat { float:left; margin-right:0.5em; }
+    .rfloat { float:right; margin-left:0.5em; }
+a.varlink { text-decoration:none;}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for arduino
+ * CSS class: , CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.arduino .de1, .arduino .de2 {font-family: monospace; font-weight: normal;}
+.arduino  {font-family:monospace;}
+.arduino .imp {font-weight: bold; color: red;}
+.arduino li, .arduino .li1 {font-family: monospace; color: black; font-weight: normal;}
+.arduino .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.arduino .li2 {font-weight: bold;}
+.arduino .kw1 {color: #993333;}
+.arduino .kw2 {color: #006699;}
+.arduino .kw3 {color: #993333;}
+.arduino .kw4 {color: #993333;}
+.arduino .kw5 {color: #993333; font-weight: bold;}
+.arduino .co1 {color: #666666; font-style: italic;}
+.arduino .co2 {color: #339933;}
+.arduino .coMULTI {color: #808080; font-style: italic;}
+.arduino .es0 {color: #000099; font-weight: bold;}
+.arduino .es1 {color: #000099; font-weight: bold;}
+.arduino .es2 {color: #660099; font-weight: bold;}
+.arduino .es3 {color: #660099; font-weight: bold;}
+.arduino .es4 {color: #660099; font-weight: bold;}
+.arduino .es5 {color: #006699; font-weight: bold;}
+.arduino .br0 {color: #006400;}
+.arduino .sy0 {color: #000080;font-weight: bold;}
+.arduino .st0 {color: #8B008B;}
+.arduino .nu0 {color: #0000dd;}
+.arduino .nu6 {color: #208080;}
+.arduino .nu8 {color: #208080;}
+.arduino .nu12 {color: #208080;}
+.arduino .nu16 {color:#800080;}
+.arduino .nu17 {color:#800080;}
+.arduino .nu18 {color:#800080;}
+.arduino .nu19 {color:#800080;}
+.arduino .me1 {color: #202020;}
+.arduino .me2 {color: #202020;}
+.arduino .ln-xtra, .arduino li.ln-xtra, .arduino div.ln-xtra {background-color: #ffc;}
+.arduino span.xtra { display:block; }
+
+.sourceblocklink {
+  text-align: right;
+  font-size: smaller;
+}
+.sourceblocktext {
+  padding: 0.5em;
+  border: 1px solid #808080;
+  color: #000000;
+  background-color: #f1f0ed;
+}
+.sourceblocktext div {
+  font-family: monospace;
+  font-size: small;
+  line-height: 1;
+  height: 1%;
+}
+.sourceblocktext div.head,
+.sourceblocktext div.foot {
+  font: italic medium serif;
+  padding: 0.5em;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for processing
+ * CSS class: , CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.processing .de1, .processing .de2 {font-family: monospace; font-weight: normal;}
+.processing  {font-family:monospace;}
+.processing .imp {font-weight: bold; color: red;}
+.processing li, .processing .li1 {font-family: monospace; color: black; font-weight: normal;}
+.processing .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.processing .li2 {font-weight: bold;}
+.processing .kw1 {color: #993333;}
+.processing .kw2 {color: #006699;}
+.processing .kw3 {color: #993333;}
+.processing .kw4 {color: #993333;}
+.processing .kw5 {color: #993333; font-weight: bold;}
+.processing .co1 {color: #666666; font-style: italic;}
+.processing .co2 {color: #339933;}
+.processing .coMULTI {color: #808080; font-style: italic;}
+.processing .es0 {color: #000099; font-weight: bold;}
+.processing .es1 {color: #000099; font-weight: bold;}
+.processing .es2 {color: #660099; font-weight: bold;}
+.processing .es3 {color: #660099; font-weight: bold;}
+.processing .es4 {color: #660099; font-weight: bold;}
+.processing .es5 {color: #006699; font-weight: bold;}
+.processing .br0 {color: #006400;}
+.processing .sy0 {color: #000080;font-weight: bold;}
+.processing .st0 {color: #8B008B;}
+.processing .nu0 {color: #0000dd;}
+.processing .nu6 {color: #208080;}
+.processing .nu8 {color: #208080;}
+.processing .nu12 {color: #208080;}
+.processing .nu16 {color:#800080;}
+.processing .nu17 {color:#800080;}
+.processing .nu18 {color:#800080;}
+.processing .nu19 {color:#800080;}
+.processing .me1 {color: #202020;}
+.processing .me2 {color: #202020;}
+.processing .ln-xtra, .processing li.ln-xtra, .processing div.ln-xtra {background-color: #ffc;}
+.processing span.xtra { display:block; }
+
+--></style><script type="text/javascript">
+function toggle(obj, hide, show) {
+    var elstyle = document.getElementById(obj).style;
+    var text    = document.getElementById(obj + "tog");
+    if(!hide) { var hide = "hide"; }
+    if(!show) { var show = "show"; }
+    if (elstyle.display == 'none') {
+        elstyle.display = 'block';
+        text.innerHTML  = hide;
+    } else {
+        elstyle.display = 'none';
+        text.innerHTML  = show;
+    }
+}
+</script>
+  <link rel="stylesheet" href="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/wsplus.css" type="text/css">
+  <!--[if IE]><style type='text/css' media='screen'>
+    body { behavior:url('http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pub/wsplus/csshover.htc'); }
+    .rollover * { visibility: visible; }
+  </style><![endif]-->
+  <meta name="robots" content="index,follow">
+
+</head>
+<body>
+
+<div id="container">
+	<b class="rtop">
+		<b class="r1"></b>
+		<b class="r2"></b>
+		<b class="r3"></b>
+		<b class="r4"></b>
+	</b> 
+
+<div id="pageHeader">
+	<!--PageHeaderFmt-->
+	<a href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php"><img src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/pmwiki-32.gif" alt="www.Mon-Club-Elec.fr" border="0"></a>
+</div>
+
+<!--/PageHeaderFmt-->
+<!--PageActionFmt-->
+<div id="pageactions">
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC">View</a>&nbsp; 
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=edit">Edit</a>&nbsp; 
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=attr">Attributes</a>&nbsp; 
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=diff">History</a>&nbsp; 
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=upload">Attach</a>&nbsp; 
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=print" target="_blank">Print</a>&nbsp; 
+	<a href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=Site.Search">Search</a>
+	<p><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.HomePage">ACCUEIL</a> | <span style="color: yellow;"><strong><a style="color: yellow" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ARDUINO">ARDUINO</a></strong> &gt; <a style="color: yellow" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ARDUINOINSTALLATION">S'INSTALLER</a> &gt; <a style="color: yellow" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ARDUINOINITIATION">DEBUTER</a> &gt; <a style="color: yellow" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ARDUINOEXPERT">APPROFONDIR</a> </span> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.OUTILSProcessing">PROCESSING</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.MECATRONIQUE">MECATRONIQUE</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.MATERIEL">MATERIEL</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.OUTILS">OUTILS</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.TESTS">TESTS</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PLUS">Plus...</a>|<br><span style="color: #ff9900;"><strong><a style="color: #ff9900" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PYQTRubriquesPython">Python</a> &gt; <a style="color: #ff9900" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PythonShell">Shell</a> &gt; <a style="color: #ff9900" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PYQT">ATELIERS Python + Qt</a> &gt; <a style="color: #ff9900" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PYQTAPPLICATIONS">PyQt apps</a> &gt; <a style="color: #ff9900" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PYQTARDUINO">PyQt+Arduino</a> </strong></span> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ROBOTS">Mes Robots</a> |  <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.REPRAP">RepRap</a> | <a class="urllink" href="http://www.mon-club-elec.fr/pmwiki_reference_lib_arduino_perso/pmwiki.php?n=Main.HomePage" rel="nofollow">Mes lib'Arduino</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.MESSHIELDS">Mes shields Arduino</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.MESDISTROS">Mes distros</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.MINIPC">Les Mini-PC</a> |<br> <span style="color: #99ff33;"><a style="color: #99ff33" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ATELIERS">ATELIERS ARDUINO</a></span>| <span style="color: red;"> <a style="color: red" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.VIDEOS">VIDEOS</a> </span>| <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.COMPRENDRE">COMPRENDRE</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.REFERENCES">REFERENCES</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.CODER">CODER</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.TECHNIQUE">TECHNIQUE</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.LINUX">GNU/LINUX</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.LIENS">LIENS</a> | <a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.RIENAVOIR">Rien à voir</a> |
+</p>
+ <!--- modif - PageMenu est dans le groupe Site--->
+</div>
+
+<div id="divPageContent">
+	<table cellspacing="0" cellpadding="5" border="0">
+
+	<tbody><tr>
+	<td class="leftColumn" valign="top">
+		<!--PageLeftFmt-->
+		<div id="navcontainer">
+			<div id="navlist">
+				<ul><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.HomePage">ACCUEIL</a>
+</li></ul><hr>
+<ul><li><span style="color: red;"><strong><a style="color: red" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ARDUINO">ARDUINO</a></strong></span>
+<ul><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ARDUINOINSTALLATION">&gt; S'installer</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ARDUINOINITIATION">&gt; Débuter</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ARDUINOEXPERT">&gt; Approfondir</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.TousLesProgrammes">&gt; Tous les programmes</a>
+</li><li><span style="color: green;"><a style="color: green" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ATELIERS"><strong>&gt; ATELIERS ARDUINO</strong></a></span>
+</li></ul></li><li><a class="urllink" href="http://www.mon-club-elec.fr/pmwiki_reference_arduino/pmwiki.php" rel="nofollow">Référence</a>
+</li><li><a class="urllink" href="http://www.mon-club-elec.fr/pmwiki_generateur_code/pmwiki.php?n=Main.HomePage" rel="nofollow">Générateur de Code</a>
+</li><li><a class="urllink" href="http://www.mon-club-elec.fr/mon_club_elec_tv/index_tv.html" rel="nofollow">Vidéos</a>
+</li></ul><hr>
+<ul><li><span style="color: red;"><a style="color: red" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.MINIPC"><strong>Mini-PC embarqués</strong></a></span>
+<ul><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PCDUINO">&gt; pcDuino ****</a> 
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.RASPBERRYPI">&gt; RaspberryPi **</a> 
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.CUBIEBOARD2">&gt; Cubieboard 2 **</a> 
+</li><li><a class="urllink" href="http://www.mon-club-elec.fr/pmwiki_reference_pyduino/pmwiki.php?n=Main.HomePage" rel="nofollow">&gt; Librairie Pyduino</a>
+</li><li><span style="color: green;"><a style="color: green" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ATELIERSPYDUINO"><strong>&gt; ATELIERS PYDUINO</strong></a></span>
+</li></ul></li></ul><hr>
+<ul><li><span style="color: red;"><strong>Webapps</strong></span>
+<ul><li><span style="color: green;"><a style="color: green" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ATELIERSPYDUINOWEBAPPS"><strong>&gt; ATELIERS WEBAPPS</strong></a></span>
+</li></ul></li></ul><hr>
+<ul><li> <span style="color: red;"><strong><a style="color: red" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PYQTRubriquesPython">Python</a></strong> </span>
+<ul><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PythonShell">&gt; Shell</a> 
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PYQTARDUINO">&gt; PyQt+Arduino</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PYQTAPPLICATIONS">&gt; PyQt apps</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PYQTLAB">&gt; PyQt Lab'</a>
+</li><li><span style="color: blue;"><a style="color: blue" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PYQT"><strong>&gt; ATELIERS Python + Qt</strong></a></span>
+</li></ul></li></ul><hr>
+<ul><li><span style="color: red;"><strong>IMPRESSION 3D</strong></span>
+<ul><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.REPRAP">&gt; Imprimantes Reprap</a> 
+</li><li><span style="color: green;"><a style="color: green" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ATELIERSIMPRESSION3D"><strong>&gt; ATELIERS I3D</strong></a></span>
+</li></ul></li></ul><hr>
+<ul><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.OUTILSProcessing">PROCESSING</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.MATERIEL">MATERIEL</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.OUTILS">OUTILS</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.TESTS">TESTS</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.PLUS">Plus...</a>
+</li></ul><hr>
+<ul><li><span style="color: red;"><a style="color: red" class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.VIDEOS">VIDEOS</a></span>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.COMPRENDRE">COMPRENDRE</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.REFERENCES">REFERENCES</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.CODER">CODER</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.TECHNIQUE">TECHNIQUE</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.LINUX">GNU/LINUX</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.LIENS">LIENS</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.RIENAVOIR">Rien à voir</a>
+</li></ul><hr>
+<ul><li><a class="urllink" href="http://crepp.org/" rel="nofollow">Atelier Arduino et Robotique de Ploemeur</a>
+</li></ul><hr>
+<ul><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.BOUTIQUE">Ma Boutique virtuelle</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ListeDesPagesDuSite">Toutes les pages</a>
+</li><li><a class="wikilink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.WikiSandbox">..</a>
+</li></ul><hr>
+<p style="text-align: center;"><span style="color: red;">Vous aimez ce site ?</span><br><span style="color: green;">Soutenez-le !</span>
+</p> 
+<table align="center"><tbody><tr><td valign="top" align="center">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="Y9SZFGBWDNHGS" type="hidden">
+<input src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/btn_donateCC_LG.gif" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !" type="image" border="0">
+<img alt="" src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/pixel.gif" width="1" height="1" border="0">
+</form>
+</td></tr></tbody></table>
+<p style="text-align: center;"><span style="font-size:69%">Par compte Paypal ou carte bancaire</span><br><span style="color: blue;"><strong><span style="font-size:83%">Vous pouvez donner dès 1€ !</span></strong></span>
+</p>
+<div class="vspace"></div>
+
+				<!--/PageLeftFmt-->
+			</div>
+		</div> 
+	</td>
+
+	<td class="rightColumn" valign="top">
+
+		<!--PageTitleFmt--><!--PageText-->
+<div id="wikitext">
+<h1>Afficher le résultat d'une mesure analogique sous forme graphique sur le PC. </h1>
+<p><a class="categorylink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=Category.ARDUINO">ARDUINO</a> - <a class="categorylink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=Category.EXPERT">EXPERT</a> - <a class="categorylink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=Category.CAN">CAN</a>- <a class="categorylink" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=Category.PROCESSING">PROCESSING</a><br>Par X. HINAULT - Créé le 20/02/2010
+</p>
+<div class="vspace"></div><div style="text-align: center;" class="img"><img src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/courbe_can.gif" alt="" title=""> <iframe src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/10731431.html" width="400" height="327" frameborder="0"></iframe></div>
+<div class="vspace"></div><h2>Présentation </h2>
+<p>Ce programme affiche le résultat d'une conversion analogique 
+numérique sous forme graphique sur le PC dans une interface Processing. 
+Le but ici est d'exploiter quasiment en pleine échelle la mesure fournie
+ par la carte Arduino (1024 niveaux)
+</p>
+<p class="vspace">L'essentiel de ce programme en fait se passe côté PC :
+ l'interface processing réalise un affichage grand format (dans une 
+fenêtre 800x800) de la mesure. On peut même pousser jusqu'à 800x1000 
+selon l'écran qu'on a... L'intérêt est de pouvoir utiliser au maximum la
+ sensibilité de l'Arduino qui rappelons-le fait une mesure sur 1024 
+niveaux (5mV de précision environ) : autant pouvoir en profiter... 
+</p>
+<p class="vspace">La courbe correspondant à la mesure s'affiche donc 
+côté PC : çà permet de se fabriquer un oscilloscope numérique basse 
+fréquence et basse tension à 25 Euros (prix de la carte Arduino...!), 
+certes limité mais qui rendra de fiers services pour des tests de 
+capteurs et autres... 
+</p>
+<p class="vspace">Cette page est une reprise modifiée de l'exemple : <a class="urllink" href="http://arduino.cc/en/Tutorial/Graph" rel="nofollow">http://arduino.cc/en/Tutorial/Graph</a>
+</p>
+<p class="vspace">Ce programme utilise les fonctionnalités suivantes : 
+</p><ul><li>la connexion série vers le PC
+</li><li>la conversion analogique numérique 10bits sur les voies analogiques  analog 0, 
+</li></ul><div class="vspace"></div><h2>Matériel Nécessaire </h2>
+<h3>L'espace de développement  Arduino</h3>
+<ul><li>... pour éditer, compiler le programme et programmer la carte Arduino.
+</li></ul><div style="text-align: center;" class="img imgonly"><img src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/espace_arduino.gif" alt="" title=""></div>
+<div class="vspace"></div><h3>Le matériel suivant pour réaliser le montage associé </h3>
+<ul><li>une plaque d'essai pour montage sans soudures,
+</li></ul><div class="img"><img src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/plaque_experimentation.gif" alt="" title=""> </div>
+<div class="vspace"></div><ul><li>des straps,
+</li></ul><div class="img imgonly"><img src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/straps.gif" alt="" title=""></div>
+<div class="vspace"></div><ul><li>une résistance variable linéaire de 10 KOhms,
+</li></ul><div class="img imgonly"><img src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/resistance_variable.gif" alt="" title=""></div>
+<div class="vspace"></div><h2>Instructions de montage </h2>
+<ul><li>Connexion série entre la carte Arduino et le PC (utilise les broches 0 et 1)  
+</li><li>Broche Analog 0 (=broche 14) en entrée Analogique 
+</li></ul><div class="vspace"></div><h2>Le schéma théorique du montage </h2>
+<div style="text-align: center;" class="img imgcaption"><img src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/rvarx1.gif" alt="" title=""><br><span class="caption">Le schéma théorique du montage</span></div>
+<div class="vspace"></div><h2>Le circuit du montage </h2>
+<div style="text-align: center;" class="img imgcaption"><img src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/rvarx1_analog0.gif" alt="" title=""><br><span class="caption">Le schéma du montage à réaliser</span></div>
+<p style="text-align: center;">(Les traits pointillés symbolisent la connexion interne à la carte Arduino entre les broches 0 et 1 et l'entrée USB)
+</p>
+<div class="vspace"></div><h2>Explication du programme</h2>
+<h3>Structure globale du programme </h3>
+<p>Ce programme simple comprend :
+</p><ul><li>une entête déclarative 
+</li><li>une partie « configuration » qui ne sera exécutée qu'une fois (fonction setup( ) )
+</li><li>une partie constituée d'une boucle sans fin que le programme 
+répètera à l'infini ( fonction loop( ) ) : c'est le coeur du programme. 
+</li></ul><div class="vspace"></div><h3>Déroulement du programme</h3>
+<p>Le programme se déroule de la façon suivante : 
+</p><ul><li>Après avoir pris en compte les instructions de la partie déclarative,
+</li><li>puis après avoir exécuté la partie configuration ( fonction setup( ) ),
+</li><li>le programme bouclera sans fin ( fonction loop ( ) ), exécutant de façon répétée le code compris dans la boucle sans fin.
+</li></ul><div class="vspace"></div><div style="text-align: center;" class="img imgcaption"><img src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/deroulement_prog.gif" alt="" title=""><br><span class="caption">Le déroulement du programme</span></div>
+<div class="vspace"></div><h2>Au niveau de la partie déclarative : </h2>
+<div class="vspace"></div><h4>Déclaration des constantes de broches </h4>
+<ul><li>Déclaration des constantes pour les broches utilisées dans le programme :
+</li></ul><div class="vspace"></div>
+<div class="sourceblock " id="sourceblock1">
+  <div class="sourceblocktext"><div class="arduino"><span class="kw4">const</span> <span class="kw4">int</span> Voie_0<span class="sy0">=</span><span class="nu0">0</span><span class="sy0">;</span> <span class="co1">//declaration constante de broche analogique</span></div></div>
+  <div class="sourceblocklink"><a href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=sourceblock&amp;num=1" type="text/plain">[$[Get Code]]</a></div>
+</div>
+
+<div class="vspace"></div><h4>Déclaration des variables globales </h4>
+<ul><li>Déclaration des variables globales du programmes : 
+<div class="vspace"></div><ul><li>Déclaration des variables globales utilisées pour la conversion analogique-numérique 
+</li></ul></li></ul><div class="vspace"></div>
+<div class="sourceblock " id="sourceblock2">
+  <div class="sourceblocktext"><div class="arduino"><span class="kw4">int</span> mesure_brute<span class="sy0">=</span><span class="nu0">0</span><span class="sy0">;</span><span class="co1">// Variable pour acquisition résultat brut de conversion analogique numérique</span><br>
+<span class="kw4">float</span> mesuref<span class="sy0">=</span><span class="nu16">0.0</span><span class="sy0">;</span><span class="co1">// Variable pour calcul résultat décimal de conversion analogique numérique</span></div></div>
+  <div class="sourceblocklink"><a href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=sourceblock&amp;num=2" type="text/plain">[$[Get Code]]</a></div>
+</div>
+
+<div class="vspace"></div><h2>Au niveau de la fonction d'initialisation setup( ) : </h2>
+<h4>Initialisation des fonctionnalités utilisées : </h4>
+<ul><li>On initialise les différentes fonctionnalités utilisées : 
+<div class="vspace"></div><ul><li>Initialisation de la communication série avec le PC 
+</li></ul></li></ul><div class="vspace"></div>
+<div class="sourceblock " id="sourceblock3">
+  <div class="sourceblocktext"><div class="arduino"><span class="kw5">Serial</span>.<span class="kw3">begin</span><span class="br0">(</span><span class="nu0">115200</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// initialise connexion série à 115200 bauds</span><br>
+<span class="co1">// IMPORTANT : régler le terminal côté PC avec la même valeur de transmission </span></div></div>
+  <div class="sourceblocklink"><a href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=sourceblock&amp;num=3" type="text/plain">[$[Get Code]]</a></div>
+</div>
+
+<div class="vspace"></div><h2>Au niveau de la boucle principale, la fonction loop ( ) : </h2>
+<ul><li>On réalise une mesure analogique à l'aide de l'instruction <a class="urllink" href="http://www.mon-club-elec.fr/pmwiki_reference_arduino/pmwiki.php?n=Main.AnalogRead" rel="nofollow">analogRead()</a>, 
+</li><li>Ensuite en envoie cette mesure sous forme d'une chaîne se terminant par un saut de ligne vers le PC à l'aide de l'instruction <a class="urllink" href="http://www.mon-club-elec.fr/pmwiki_reference_arduino/pmwiki.php?n=Main.Serialprintln" rel="nofollow">Serial.println()</a>,
+</li><li>une pause entre 2 mesures vient moduler la vitesse d'affichage ( à adapter au besoin )
+</li></ul><div class="vspace"></div>
+<div class="sourceblock " id="sourceblock4">
+  <div class="sourceblocktext"><div class="arduino"><br>
+<span class="co1">// acquisition conversion analogique-numerique (CAN) sur la voie analogique</span><br>
+mesure_brute<span class="sy0">=</span><span class="kw3">analogRead</span><span class="br0">(</span>Voie_0<span class="br0">)</span><span class="sy0">;</span> <br>
+<br>
+<span class="co1">// affiche valeur numerique entière ou à virgule au format décimal</span><br>
+<span class="kw5">Serial</span>.<span class="kw3">println</span><span class="br0">(</span>mesure_brute<span class="br0">)</span><span class="sy0">;</span> <br>
+<br>
+<span class="kw3">delay</span><span class="br0">(</span><span class="nu0">100</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// fixe une pause entre 2 mesures </span><br>
+<span class="co1">// plus le délai est court, plus la trace est rapide</span><br>
+&nbsp;</div></div>
+  <div class="sourceblocklink"><a href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=sourceblock&amp;num=4" type="text/plain">[$[Get Code]]</a></div>
+</div>
+
+<div class="vspace"></div><ul><li>Le programme recommence en boucle les instructions de la fonction loop( ). 
+</li></ul><p class="vspace">Se reporter aux commentaires présents dans le programme pour plus de détails. 
+</p>
+<div class="vspace"></div><h2>Mise en oeuvre du programme</h2>
+<h3>Préparation du montage et programmation de la carte Arduino : </h3>
+<ul><li>Commencer par réaliser le montage indiqué sur plaque d'expérimentation 
+</li><li>Ensuite, programmer la carte Arduino avec ce programme (en bas de page) selon la procédure habituelle
+</li></ul><div class="vspace"></div><h3>Fonctionnement</h3>
+<ul><li>L'essentiel de se programme en fait se passe côté PC : 
+l'interface processing réalise un affichage grand format (dans une 
+fenêtre 800x800) de la mesure. On peut même pousser jusqu'à 800x1000 
+selon l'écran qu'on a... L'intérêt est de pouvoir utiliser au maximum la
+ sensibilité de l'Arduino qui rappelons le fait une mesure sur 1024 
+niveaux (5mV de précision environ) : autant pourvoir en profiter... 
+</li><li>La courbe correspondant à la mesure s'affiche donc côté PC : çà
+ permet de se fabriquer un oscilloscope numérique basse fréquence et 
+basse tension à 25 Euros (prix de la carte Arduino...!), certes limité 
+mais qui rendra de fier service pour des tests de capteurs et autres... 
+</li></ul><div class="vspace"></div><div style="text-align: center;" class="img imgonly"><img src="www.Mon-Club-Elec.fr%20|%20MAIN%20_%20ArduinoExpertSerieCanGraphiquePC_files/courbe_can.gif" alt="" title=""></div>
+<div class="vspace"></div><h2>Le programme complet en langage Arduino : </h2>
+<p style="text-align: center; color: red;"> A copier/coller directement dans l'éditeur Arduino
+</p>
+<div class="vspace"></div>
+<div class="sourceblock " id="sourceblock5">
+  <div class="sourceblocktext"><div class="arduino"><br>
+<span class="co1">// --- Programme Arduino ---</span><br>
+<span class="co1">// par X. HINAULT - 01/2010 </span><br>
+<br>
+<span class="co1">// --- Que fait ce programme ? ---</span><br>
+<span class="coMULTI">/* Affiche le résultat brut d'une conversion analogique numérique sur la fenêtre terminal du PC*/</span><br>
+<br>
+<span class="co1">// --- Fonctionnalités utilisées ---</span><br>
+<span class="co1">// Utilise la connexion série vers le PC </span><br>
+<span class="co1">// Utilise la conversion analogique numérique 10bits sur les voies analogiques &nbsp;analog 0, </span><br>
+<br>
+<span class="co1">// --- Circuit à réaliser ---</span><br>
+<span class="co1">// Connexion série entre la carte Arduino et le PC (utilise les broches 0 et 1) &nbsp;</span><br>
+<br>
+<span class="co1">// Broche Analog 0 (=broche 14) en entrée Analogique 
+&nbsp;: connecter la sortie d'une résistance Variable 10K elle-même 
+connectée entre 0 et 5V </span><br>
+<br>
+<span class="co1">//**************** Entête déclarative *******</span><br>
+<span class="co1">// A ce niveau sont déclarées les librairies, les constantes, les variables...</span><br>
+<br>
+<span class="co1">// --- Inclusion des librairies utilisées ---</span><br>
+<br>
+<span class="co1">// --- Déclaration des constantes ---</span><br>
+<br>
+<span class="co1">// --- constantes des broches ---</span><br>
+<br>
+<span class="kw4">const</span> <span class="kw4">int</span> Voie_0<span class="sy0">=</span><span class="nu0">0</span><span class="sy0">;</span> <span class="co1">//declaration constante de broche analogique</span><br>
+<br>
+<span class="co1">// --- Déclaration des variables globales ---</span><br>
+<span class="kw4">int</span> mesure_brute<span class="sy0">=</span><span class="nu0">0</span><span class="sy0">;</span><span class="co1">// Variable pour acquisition résultat brut de conversion analogique numérique</span><br>
+<br>
+<br>
+<span class="co1">// --- Initialisation des fonctionnalités utilisées ---</span><br>
+<br>
+<span class="co1">//**************** FONCTION SETUP = Code d'initialisation *****</span><br>
+<span class="co1">// La fonction setup() est exécutée en premier et 1 seule fois, au démarrage du programme</span><br>
+<br>
+<span class="kw4">void</span> <span class="kw5">setup</span><span class="br0">(</span><span class="br0">)</span> &nbsp; <span class="br0">{</span> <span class="co1">// debut de la fonction setup()</span><br>
+<br>
+<span class="co1">// --- ici instructions à exécuter au démarrage --- </span><br>
+<br>
+<span class="kw5">Serial</span>.<span class="kw3">begin</span><span class="br0">(</span><span class="nu0">115200</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// initialise connexion série à 115200 bauds</span><br>
+<span class="co1">// IMPORTANT : régler le terminal côté PC avec la même valeur de transmission </span><br>
+<br>
+<br>
+<br>
+<br>
+<span class="br0">}</span> <span class="co1">// fin de la fonction setup()</span><br>
+<span class="co1">// ********************************************************************************</span><br>
+<br>
+<span class="co1">//*************** FONCTION LOOP = Boucle sans fin = coeur du programme *************</span><br>
+<span class="co1">// la fonction loop() s'exécute sans fin en boucle aussi longtemps que l'Arduino est sous tension</span><br>
+<br>
+<span class="kw4">void</span> <span class="kw5">loop</span><span class="br0">(</span><span class="br0">)</span><span class="br0">{</span> <span class="co1">// debut de la fonction loop()</span><br>
+<br>
+<span class="co1">// --- ici instructions à exécuter par le programme principal --- </span><br>
+<br>
+<span class="co1">// acquisition conversion analogique-numerique (CAN) sur la voie analogique</span><br>
+mesure_brute<span class="sy0">=</span><span class="kw3">analogRead</span><span class="br0">(</span>Voie_0<span class="br0">)</span><span class="sy0">;</span> <br>
+<br>
+<span class="co1">// affiche valeur numerique entière ou à virgule au format décimal</span><br>
+<span class="kw5">Serial</span>.<span class="kw3">println</span><span class="br0">(</span>mesure_brute<span class="br0">)</span><span class="sy0">;</span> <br>
+<br>
+<span class="kw3">delay</span><span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// fixe une pause entre 2 mesures </span><br>
+<span class="co1">// plus le délai est court, plus la trace est rapide</span><br>
+<br>
+<span class="br0">}</span> <span class="co1">// fin de la fonction loop() - le programme recommence au début de la fonction loop sans fin</span><br>
+<span class="co1">// ********************************************************************************</span><br>
+<br>
+<span class="co1">// --- Fin programme ---</span><br>
+&nbsp;</div></div>
+  <div class="sourceblocklink"><a href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=sourceblock&amp;num=5" type="text/plain">[$[Get Code]]</a></div>
+</div>
+
+<div class="vspace"></div><h2>Le programme complet Processing : </h2>
+<p style="text-align: center; color: red;"> A copier/coller directement dans l'éditeur Processing et lancer le programme. 
+</p>
+<div class="vspace"></div>
+<div class="sourceblock " id="sourceblock6">
+  <div class="sourceblocktext"><div class="processing"><br>
+<span class="coMULTI">/* Processing code for this example<br>
+<br>
+&nbsp;// Graphing sketch<br>
+<br>
+<br>
+&nbsp;// Ce programme reçoit des chaine de caractère ASCII<br>
+&nbsp;// depuis le port Série à 115200 bauds et les affiche sous forme de courbe<br>
+&nbsp;// dans une fourchette de 0 to 1023, <br>
+&nbsp;//lorsque les données sont suivies d'un retour de ligne<br>
+<br>
+&nbsp;// Created 20 Apr 2005<br>
+&nbsp;// Updated 18 Jan 2008<br>
+&nbsp;// by Tom Igoe <br>
+&nbsp;//<br>
+&nbsp;// modifié par X. HINAULT - January 2010<br>
+&nbsp;// www.mon-club-elec.fr<br>
+&nbsp;*/</span><br>
+<br>
+&nbsp;<span class="kw3">import</span> processing.<span class="me1">serial</span>.<span class="sy0">*;</span><br>
+<br>
+&nbsp;Serial myPort<span class="sy0">;</span> &nbsp; &nbsp; &nbsp; &nbsp;<span class="co1">// Variable Port Série</span><br>
+&nbsp;<span class="kw3">int</span> xPos <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span> &nbsp; &nbsp; &nbsp; &nbsp; <span class="co1">// variable abscisse &nbsp;- x</span><br>
+&nbsp;<span class="kw3">int</span> xPos0<span class="sy0">=</span><span class="nu0">1</span><span class="sy0">;</span> &nbsp; &nbsp; &nbsp; <span class="co1">// variable mémorisation xPos n-1</span><br>
+<br>
+<span class="kw3">float</span> yPos<span class="sy0">=</span><span class="nu0">1</span><span class="sy0">;</span> &nbsp;<span class="co1">// variable yPos - ordonnée</span><br>
+<span class="kw3">float</span> yPos0<span class="sy0">=</span><span class="nu0">1</span><span class="sy0">;</span> <span class="co1">// variable yPos n-1</span><br>
+<br>
+&nbsp;<span class="kw4">void</span> <span class="kw5">setup</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+<br>
+&nbsp;<span class="co1">// initialise la fenêtre </span><br>
+&nbsp;<span class="kw3">size</span><span class="br0">(</span><span class="kw3">int</span><span class="br0">(</span>screen.<span class="kw2">width</span><span class="sy0">*</span><span class="nu16">0.9</span><span class="br0">)</span><span class="sy0">,</span> <span class="kw3">int</span><span class="br0">(</span>screen.<span class="kw2">height</span><span class="sy0">*</span><span class="nu16">0.9</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span> &nbsp; &nbsp; &nbsp; &nbsp;<br>
+<span class="co1">// 90% de l'écran par défaut - régler au besoin - </span><br>
+<span class="co1">// viser taille maxi en hauteur - taille fenêtre (x,y)</span><br>
+<br>
+<br>
+&nbsp;<span class="co1">// Liste tous les ports disponible et affiche le résultat </span><br>
+&nbsp;<span class="kw3">println</span><span class="br0">(</span>Serial.<span class="kw3">list</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp;<span class="co1">// Le port COM3 est listé avec l'indice 1</span><br>
+&nbsp;<span class="co1">// donc j'ouvre le port Serial.list()[1].</span><br>
+&nbsp;<span class="co1">// A adapter si votre port est différent - cf liste qui s'affiche à l'exécution</span><br>
+&nbsp;myPort <span class="sy0">=</span> <span class="kw3">new</span> Serial<span class="br0">(</span><span class="kw3">this</span><span class="sy0">,</span> Serial.<span class="kw3">list</span><span class="br0">(</span><span class="br0">)</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="sy0">,</span> <span class="nu0">115200</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp;<span class="co1">// ne génère aucun évènement Série tant qu'aucun caractère saut de ligne n'est reçu</span><br>
+&nbsp;myPort.<span class="me1">bufferUntil</span><span class="br0">(</span><span class="st0">'<span class="es1">\n</span>'</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp;<span class="co1">// initialise le fond de la fenêtre</span><br>
+&nbsp;<span class="kw3">background</span><span class="br0">(</span><span class="nu0">255</span><span class="br0">)</span><span class="sy0">;</span><span class="co1">// 0 = noir - 255 = blanc</span><br>
+&nbsp;<span class="br0">}</span><br>
+&nbsp;<span class="kw4">void</span> <span class="kw5">draw</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp;<span class="co1">// tout se passe dans la fonction SerialEvent car le programme reçoit des données</span><br>
+&nbsp;<span class="br0">}</span><br>
+<br>
+&nbsp;<span class="kw4">void</span> serialEvent <span class="br0">(</span>Serial myPort<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp;<span class="co1">// mémorise la chaîne de caractères reçue</span><br>
+&nbsp;<span class="kw3">String</span> inString <span class="sy0">=</span> myPort.<span class="me1">readStringUntil</span><span class="br0">(</span><span class="st0">'<span class="es1">\n</span>'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp;<span class="kw1">if</span> <span class="br0">(</span>inString <span class="sy0">!=</span> <span class="kw2">null</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp;<span class="co1">// enlève les espaces</span><br>
+&nbsp;inString <span class="sy0">=</span> <span class="kw3">trim</span><span class="br0">(</span>inString<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp;<span class="co1">// convertit la chaîne en valeur numérique </span><br>
+&nbsp;<span class="kw3">float</span> inByte <span class="sy0">=</span> <span class="kw3">float</span><span class="br0">(</span>inString<span class="br0">)</span><span class="sy0">;</span> <br>
+&nbsp;<span class="co1">// ré-échelonne la valeur pour affichage</span><br>
+&nbsp;inByte <span class="sy0">=</span> <span class="kw3">map</span><span class="br0">(</span>inByte<span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> <span class="nu0">1023</span><span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> <span class="kw2">height</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp;yPos<span class="sy0">=</span>inByte<span class="sy0">;</span> <span class="co1">// l'ordonnée est la valeur reçue par le port série</span><br>
+<br>
+&nbsp;<span class="co1">// trace la ligne</span><br>
+&nbsp;<span class="kw3">stroke</span><span class="br0">(</span><span class="nu0">0</span><span class="sy0">,</span><span class="nu0">0</span><span class="sy0">,</span><span class="nu0">255</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// fixe la couleur utilisée pour le tracé en RVB </span><br>
+<br>
+&nbsp;<span class="kw3">line</span> <span class="br0">(</span>xPos0<span class="sy0">,</span>height<span class="sy0">-</span>yPos0<span class="sy0">,</span>xPos<span class="sy0">,</span>height<span class="sy0">-</span>yPos<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// trace une ligne en tenant compte valeur reçue</span><br>
+<br>
+&nbsp;xPos0<span class="sy0">=</span>xPos<span class="sy0">;</span> <span class="co1">// mémorisation xPos n-1</span><br>
+&nbsp;yPos0<span class="sy0">=</span>yPos<span class="sy0">;</span> <span class="co1">// mémorisation xPos n-1</span><br>
+<br>
+&nbsp;<span class="co1">// à la fin de l'écran revient au début</span><br>
+&nbsp;<span class="kw1">if</span> <span class="br0">(</span>xPos <span class="sy0">&gt;=</span> <span class="kw2">width</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp;xPos <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span><br>
+&nbsp;xPos0<span class="sy0">=</span><span class="nu0">0</span><span class="sy0">;</span> <span class="co1">// pour retour de la trace sans ligne</span><br>
+<br>
+&nbsp;<span class="kw3">background</span><span class="br0">(</span><span class="nu0">255</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// 0 pour noir - 255 pour blanc... &nbsp;</span><br>
+&nbsp;<span class="br0">}</span> <br>
+&nbsp;<span class="kw1">else</span> <span class="br0">{</span><br>
+&nbsp;<span class="co1">// incrémente la position horizontale (abscisse)</span><br>
+&nbsp;xPos<span class="sy0">++;</span><br>
+&nbsp;<span class="br0">}</span><br>
+&nbsp;<span class="br0">}</span><br>
+&nbsp;<span class="br0">}</span><br>
+<br>
+&nbsp;</div></div>
+  <div class="sourceblocklink"><a href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=sourceblock&amp;num=6" type="text/plain">[$[Get Code]]</a></div>
+</div>
+
+<div class="vspace"></div>
+</div>
+
+	</td>
+
+	</tr>
+
+	</tbody></table>
+</div>
+
+<!--PageFooterFmt-->
+<div id="footer">
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC">View</a>&nbsp; 
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=edit">Edit</a>&nbsp; 
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=attr">Attributes</a>&nbsp; 
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=diff">History</a>&nbsp; 
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=upload">Attach</a>&nbsp; 
+	<a rel="nofollow" href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=MAIN.ArduinoExpertSerieCanGraphiquePC?action=print" target="_blank">Print</a>&nbsp; 
+	<a href="http://www.mon-club-elec.fr/pmwiki_mon_club_elec/pmwiki.php?n=Site.Search">Search</a> - 
+	Page last modified on April 20, 2012, at 09:36 AM
+</div>
+
+<b class="rbottom"><b class="r4"></b> <b class="r3"></b> <b class="r2"></b> <b class="r1"></b></b>
+
+</div> <!-- fin div container -->
+
+<div class="spacer">&nbsp;</div> <!-- take spacer this out? -->
+<!--HTMLFooter-->
+
+
+</body></html>

@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html xmlns:og="http://ogp.me/ns#" lang="fr"><iframe id="MstReqFrm" style="display: none;"></iframe><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><script type="text/javascript" async="" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/ga.js"></script><script type="text/javascript" charset="UTF-8" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/widget.aspx"></script>
+	<meta charset="iso-8859-1">
+	<title>Gestion du port GPIO du Raspberry Pi avec Python</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="generator" content="developpez-com">
+	<meta name="description" content="Introduction au Raspberry Pi et à son port GPIO avec Python">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Gestion du port GPIO du Raspberry Pi avec Python">
+	<meta property="og:image" content="https://www.developpez.com/template/images/logo.png">
+	<meta property="og:url" content="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/">
+	<meta property="og:locale" content="fr_FR">
+	<meta property="og:site_name" content="Developpez.com">
+	<meta property="twitter:card" content="summary">
+	<meta property="twitter:url" content="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/">
+	<meta property="twitter:description" content="Introduction au Raspberry Pi et à son port GPIO avec Python">
+	<meta property="twitter:title" content="Gestion du port GPIO du Raspberry Pi avec Python">
+	<meta property="twitter:image" content="https://www.developpez.com/template/images/logo.png">
+	<script type="text/javascript" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/jquery-1.js"></script>
+	<script async="" type="text/javascript" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/a"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="http://deusyss.developpez.com/template/favicon.ico">
+	<link rel="image_src" href="https://www.developpez.com/facebook-icon.png">
+	<link rel="stylesheet" type="text/css" href="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/gabarit.css">
+	<link rel="stylesheet" type="text/css" media="print" href="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/printer.css">
+	<link rel="stylesheet" type="text/css" href="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/gabarit-mobile.css">
+	<script type="text/javascript" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/gabarit-mobile.js"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/developpez-kit-generation.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/code.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/lightbox.css">
+	<script type="text/javascript" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/developpez-kit-generation.js"></script>
+	<script type="text/javascript" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/lightbox.js"></script>
+	<script type="text/javascript" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/LecteurSWF.js"></script>
+	<script type="text/javascript" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/fonctions-kit.js"></script>
+	<meta name="author" content="Alexandre GALODE">
+	<!--[if lt IE 7]>
+	<script src="/template/ie7/IE7.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie6.css" />
+	<![endif]-->
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie7.css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="/template/kit/html5_ie.js"></script>
+	<![endif]-->
+	<!--[if IE 9]><link rel="stylesheet" type="text/css" href="/template/kit/ie9.css" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="/template/kit/ie8.css" /><![endif]-->
+	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="/template/kit/ie.css" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="/template/kit/ie7.css" /><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="/template/kit/ie6.css" /><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="/template/kit/html5_ie.js"></script><![endif]-->
+
+<script src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/secureAnonymousFramework"></script><script type="text/javascript" charset="utf-8" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/metrics.js"></script><style type="text/css"></style><style type="text/css">* html #li_ui_li_gen_1520354702618_0 a#li_ui_li_gen_1520354702618_0-link{height:1% !important;}#li_ui_li_gen_1520354702618_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1520354702618_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1520354702618_0 a#li_ui_li_gen_1520354702618_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1520354702618_0 a#li_ui_li_gen_1520354702618_0-link:link, #li_ui_li_gen_1520354702618_0 a#li_ui_li_gen_1520354702618_0-link:visited, #li_ui_li_gen_1520354702618_0 a#li_ui_li_gen_1520354702618_0-link:hover, #li_ui_li_gen_1520354702618_0 a#li_ui_li_gen_1520354702618_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1520354702618_0 a#li_ui_li_gen_1520354702618_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;}#li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1520354702618_0.hovered #li_ui_li_gen_1520354702618_0-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1520354702618_0.clicked #li_ui_li_gen_1520354702618_0-title, #li_ui_li_gen_1520354702618_0.down #li_ui_li_gen_1520354702618_0-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title{}.IN-shadowed #li_ui_li_gen_1520354702618_0.hovered #li_ui_li_gen_1520354702618_0-title{}.IN-shadowed #li_ui_li_gen_1520354702618_0.clicked #li_ui_li_gen_1520354702618_0-title, .IN-shadowed #li_ui_li_gen_1520354702618_0.down #li_ui_li_gen_1520354702618_0-title{}#li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title-text, #li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1520354702618_0.hovered #li_ui_li_gen_1520354702618_0-title-text, #li_ui_li_gen_1520354702618_0.hovered #li_ui_li_gen_1520354702618_0-title-text *{color:#fff !important;}#li_ui_li_gen_1520354702618_0.clicked #li_ui_li_gen_1520354702618_0-title-text, #li_ui_li_gen_1520354702618_0.down #li_ui_li_gen_1520354702618_0-title-text, #li_ui_li_gen_1520354702618_0.clicked #li_ui_li_gen_1520354702618_0-title-text *, #li_ui_li_gen_1520354702618_0.down #li_ui_li_gen_1520354702618_0-title-text *{color:#fff !important;}#li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title #li_ui_li_gen_1520354702618_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title-text, .success #li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1520354702618_0 #li_ui_li_gen_1520354702618_0-title{}.success #li_ui_li_gen_1520354702618_0.hovered #li_ui_li_gen_1520354702618_0-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1520354702618_0.hovered #li_ui_li_gen_1520354702618_0-title-text, .success #li_ui_li_gen_1520354702618_0.hovered #li_ui_li_gen_1520354702618_0-title-text *{color:#fff !important;}.success #li_ui_li_gen_1520354702618_0.clicked #li_ui_li_gen_1520354702618_0-title, .success #li_ui_li_gen_1520354702618_0.down #li_ui_li_gen_1520354702618_0-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1520354702618_0.clicked #li_ui_li_gen_1520354702618_0-title-text, .success #li_ui_li_gen_1520354702618_0.down #li_ui_li_gen_1520354702618_0-title-text, .success #li_ui_li_gen_1520354702618_0.clicked #li_ui_li_gen_1520354702618_0-title-text *, .success #li_ui_li_gen_1520354702618_0.down #li_ui_li_gen_1520354702618_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1520354702618_0.clicked #li_ui_li_gen_1520354702618_0-title, .IN-shadowed .success #li_ui_li_gen_1520354702618_0.down #li_ui_li_gen_1520354702618_0-title{}* html #li_ui_li_gen_1520354702631_1 a#li_ui_li_gen_1520354702631_1-link{height:1% !important;}#li_ui_li_gen_1520354702631_1{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1520354702631_1 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1520354702631_1 a#li_ui_li_gen_1520354702631_1-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1520354702631_1 a#li_ui_li_gen_1520354702631_1-link:link, #li_ui_li_gen_1520354702631_1 a#li_ui_li_gen_1520354702631_1-link:visited, #li_ui_li_gen_1520354702631_1 a#li_ui_li_gen_1520354702631_1-link:hover, #li_ui_li_gen_1520354702631_1 a#li_ui_li_gen_1520354702631_1-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1520354702631_1 a#li_ui_li_gen_1520354702631_1-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;}#li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1520354702631_1.hovered #li_ui_li_gen_1520354702631_1-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1520354702631_1.clicked #li_ui_li_gen_1520354702631_1-title, #li_ui_li_gen_1520354702631_1.down #li_ui_li_gen_1520354702631_1-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title{}.IN-shadowed #li_ui_li_gen_1520354702631_1.hovered #li_ui_li_gen_1520354702631_1-title{}.IN-shadowed #li_ui_li_gen_1520354702631_1.clicked #li_ui_li_gen_1520354702631_1-title, .IN-shadowed #li_ui_li_gen_1520354702631_1.down #li_ui_li_gen_1520354702631_1-title{}#li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title-text, #li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title-text em{font-style:italic !important;}#li_ui_li_gen_1520354702631_1.hovered #li_ui_li_gen_1520354702631_1-title-text, #li_ui_li_gen_1520354702631_1.hovered #li_ui_li_gen_1520354702631_1-title-text *{color:#fff !important;}#li_ui_li_gen_1520354702631_1.clicked #li_ui_li_gen_1520354702631_1-title-text, #li_ui_li_gen_1520354702631_1.down #li_ui_li_gen_1520354702631_1-title-text, #li_ui_li_gen_1520354702631_1.clicked #li_ui_li_gen_1520354702631_1-title-text *, #li_ui_li_gen_1520354702631_1.down #li_ui_li_gen_1520354702631_1-title-text *{color:#fff !important;}#li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title #li_ui_li_gen_1520354702631_1-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title-text, .success #li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1520354702631_1 #li_ui_li_gen_1520354702631_1-title{}.success #li_ui_li_gen_1520354702631_1.hovered #li_ui_li_gen_1520354702631_1-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1520354702631_1.hovered #li_ui_li_gen_1520354702631_1-title-text, .success #li_ui_li_gen_1520354702631_1.hovered #li_ui_li_gen_1520354702631_1-title-text *{color:#fff !important;}.success #li_ui_li_gen_1520354702631_1.clicked #li_ui_li_gen_1520354702631_1-title, .success #li_ui_li_gen_1520354702631_1.down #li_ui_li_gen_1520354702631_1-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1520354702631_1.clicked #li_ui_li_gen_1520354702631_1-title-text, .success #li_ui_li_gen_1520354702631_1.down #li_ui_li_gen_1520354702631_1-title-text, .success #li_ui_li_gen_1520354702631_1.clicked #li_ui_li_gen_1520354702631_1-title-text *, .success #li_ui_li_gen_1520354702631_1.down #li_ui_li_gen_1520354702631_1-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1520354702631_1.clicked #li_ui_li_gen_1520354702631_1-title, .IN-shadowed .success #li_ui_li_gen_1520354702631_1.down #li_ui_li_gen_1520354702631_1-title{}</style></head>
+<body>
+<header>
+
+<div id="gabarit_recherche">
+<form action="https://www.google.fr" target="_blank">
+  <div>
+    <input name="cx" value="partner-pub-8110924381468607:6449306375" type="hidden">
+    <input name="ie" value="UTF-8" type="hidden">
+    <input name="q" size="12" type="text">
+    <input name="sa" value="Rechercher" type="submit">
+  </div>
+</form>
+</div>
+
+<div id="gabarit_superieur">
+	<nav>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/" title="">Forums</a></li>
+		<li><a href="https://general.developpez.com/cours/" title="">Tutoriels</a></li>
+		<li><a href="http://magazine.developpez.com/" title="">Magazine</a></li>
+		<li><a href="https://general.developpez.com/faq/" title="">FAQs</a></li>
+		<li><a href="https://www.developpez.net/forums/blogs/" title="">Blogs</a></li>
+		<li><a href="https://chat.developpez.com/" title="">Chat</a></li>
+		<li><a href="https://www.developpez.com/newsletter/">Newsletter</a></li>
+		<li><a href="https://etudes.developpez.com/">Études</a></li>
+		<li><a href="https://emploi.developpez.com/" title="">Emploi</a></li>
+		<li><a href="https://club.developpez.com/">Club</a></li>
+		<li><a href="https://club.developpez.com/contacts/" title="">Contacts</a></li>
+	</ul>
+	</nav>
+</div>
+<div style="position: relative; clear: both; float: right; top: -2px; width: 745px; margin-top: 10px; margin-right: 5px; background-color: #E1E1E2">
+<div id="gabarit_pub0"></div><div id="st131ql0a" style="display: inline-block; width: 728px; height: 90px"><iframe style="border: 0" scrolling="no" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/offres.html" width="728" height="90"></iframe></div>
+</div>
+
+<div id="gabarit_logo">
+	<a href="https://www.developpez.com/" title="Accueil Developpez.com"><img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/logo.png" alt="" width="216" height="89"></a>
+</div>
+
+<nav>
+
+<div id="gabarit_mobile">
+	<img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/logo-mobile.png" alt="" width="65" height="72">
+	<div>Developpez.com - <strong>Raspberry Pi</strong></div>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/f2081/general-developpement/programmation-systeme/embarque/raspberry-pi/">Forums</a></li>
+		<li><span>Autre rubrique</span></li>
+	</ul>
+</div>
+
+<div id="gabarit_menu_mobile">
+	<div>X</div>
+	<p>Choisissez <span>d'abord la catégorie</span><span>ensuite la rubrique</span> :</p>
+	<ul><li></li></ul>
+</div>
+
+<ul id="gabarit_menu">
+	<li><a href="https://www.developpez.com/" data-idrub="1" data-niv="1">Accueil<span class="gabarit_tooltip">Actualités IT Pro</span></a>
+			</li>
+	<li><a href="https://alm.developpez.com/" data-idrub="42" data-niv="1">ALM<span class="gabarit_tooltip">Cycle de vie du logiciel</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://alm.developpez.com/" data-idrub="42" data-niv="2">ALM</a></li>
+				<li><a href="https://merise.developpez.com/" data-idrub="43" data-niv="2">Merise</a></li>
+				<li><a href="https://uml.developpez.com/" data-idrub="12" data-niv="2">UML</a></li>
+			</ul></li>
+	<li><a href="https://java.developpez.com/" data-idrub="4" data-niv="1">Java<span class="gabarit_tooltip">Plateforme et langage Java</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://java.developpez.com/" data-idrub="4" data-niv="2">Java</a></li>
+				<li><a href="https://javaweb.developpez.com/" data-idrub="97" data-niv="2">Java Web</a></li>
+				<li><a href="https://spring.developpez.com/" data-idrub="87" data-niv="2">Spring</a></li>
+				<li><a href="https://android.developpez.com/" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://eclipse.developpez.com/" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://netbeans.developpez.com/" data-idrub="66" data-niv="2">NetBeans</a></li>
+			</ul></li>
+	<li><a href="https://dotnet.developpez.com/" data-idrub="20" data-niv="1">.NET<span class="gabarit_tooltip">Microsoft Framework .NET</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://dotnet.developpez.com/" data-idrub="20" data-niv="2">Microsoft DotNET</a></li>
+				<li><a href="https://dotnet.developpez.com/visual-studio/" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">ASP.NET</a></li>
+				<li><a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">C#</a></li>
+				<li><a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">VB.NET</a></li>
+				<li><a href="https://windowsphone.developpez.com/" data-idrub="105" data-niv="2">Windows Phone</a></li>
+				<li><a href="https://windows-azure.developpez.com/" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+			</ul></li>
+	<li><a href="https://web.developpez.com/" data-idrub="8" data-niv="1">Dév. Web<span class="gabarit_tooltip">Développement Web et Webmarketing</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://web.developpez.com/" data-idrub="8" data-niv="2">Développement Web</a></li>
+				<li><a href="https://ajax.developpez.com/" data-idrub="85" data-niv="2">AJAX</a></li>
+				<li><a href="https://apache.developpez.com/" data-idrub="71" data-niv="2">Apache</a></li>
+				<li><a href="https://asp.developpez.com/" data-idrub="10" data-niv="2">ASP</a></li>
+				<li><a href="https://css.developpez.com/" data-idrub="51" data-niv="2">CSS</a></li>
+				<li><a href="https://dart.developpez.com/" data-idrub="125" data-niv="2">Dart</a></li>
+				<li><a href="https://flash.developpez.com/" data-idrub="41" data-niv="2">Flash / Flex</a></li>
+				<li><a href="https://javascript.developpez.com/" data-idrub="45" data-niv="2">JavaScript</a></li>
+				<li><a href="https://nodejs.developpez.com/" data-idrub="141" data-niv="2">NodeJS</a></li>
+				<li><a href="https://php.developpez.com/" data-idrub="9" data-niv="2">PHP</a></li>
+				<li><a href="https://ruby.developpez.com/" data-idrub="53" data-niv="2">Ruby &amp; Rails</a></li>
+				<li><a href="https://typescript.developpez.com/" data-idrub="127" data-niv="2">TypeScript</a></li>
+				<li><a href="https://web-semantique.developpez.com/" data-idrub="111" data-niv="2">Web sémantique</a></li>
+				<li><a href="https://webmarketing.developpez.com/" data-idrub="80" data-niv="2">Webmarketing</a></li>
+				<li><a href="https://xhtml.developpez.com/" data-idrub="50" data-niv="2">(X)HTML</a></li>
+			</ul></li>
+	<li><a href="https://edi.developpez.com/" data-idrub="90" data-niv="1">EDI<span class="gabarit_tooltip">Environnements de Développement Intégré</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://edi.developpez.com/" data-idrub="90" data-niv="2">EDI</a></li>
+				<li><a href="https://4d.developpez.com/" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://delphi.developpez.com/" data-idrub="2" data-niv="2">Delphi</a></li>
+				<li><a href="https://eclipse.developpez.com/" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://labview.developpez.com/" data-idrub="72" data-niv="2">LabVIEW</a></li>
+				<li><a href="https://netbeans.developpez.com/" data-idrub="66" data-niv="2">NetBeans</a></li>
+				<li><a href="https://matlab.developpez.com/" data-idrub="58" data-niv="2">MATLAB</a></li>
+				<li><a href="https://scilab.developpez.com/" data-idrub="120" data-niv="2">Scilab</a></li>
+				<li><a href="https://dotnet.developpez.com/visual-studio/" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://wind.developpez.com/" data-idrub="74" data-niv="2">WinDev</a></li>
+				<li><a href="https://vb.developpez.com/" data-idrub="5" data-niv="2">Visual Basic 6</a></li>
+				<li><a href="https://lazarus.developpez.com/" data-idrub="96" data-niv="2">Lazarus</a></li>
+				<li><a href="https://qt-creator.developpez.com/" data-idrub="109" data-niv="2">Qt Creator</a></li>
+			</ul></li>
+	<li><a href="https://programmation.developpez.com/" data-idrub="119" data-niv="1">Programmation<span class="gabarit_tooltip">Programmation et langages de programmation applicatifs</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://programmation.developpez.com/" data-idrub="119" data-niv="2">Programmation</a></li>
+				<li><a href="https://algo.developpez.com/" data-idrub="47" data-niv="2">Débuter - Algorithmique</a></li>
+				<li><a href="https://jeux.developpez.com/" data-idrub="38" data-niv="2">2D - 3D - Jeux</a></li>
+				<li><a href="https://asm.developpez.com/" data-idrub="16" data-niv="2">Assembleur</a></li>
+				<li><a href="https://c.developpez.com/" data-idrub="3" data-niv="2">C</a></li>
+				<li><a href="https://cpp.developpez.com/" data-idrub="59" data-niv="2">C++</a></li>
+				<li><a href="https://go.developpez.com/" data-idrub="124" data-niv="2">Go</a></li>
+				<li><a href="https://objective-c.developpez.com/" data-idrub="117" data-niv="2">Objective C</a></li>
+				<li><a href="https://pascal.developpez.com/" data-idrub="7" data-niv="2">Pascal</a></li>
+				<li><a href="https://perl.developpez.com/" data-idrub="29" data-niv="2">Perl</a></li>
+				<li><a href="https://python.developpez.com/" data-idrub="27" data-niv="2">Python</a></li>
+				<li><a href="https://swift.developpez.com/" data-idrub="128" data-niv="2">Swift</a></li>
+				<li><a href="https://qt.developpez.com/" data-idrub="65" data-niv="2">Qt</a></li>
+				<li><a href="https://xml.developpez.com/" data-idrub="11" data-niv="2">XML</a></li>
+				<li><a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">Autres</a></li>
+			</ul></li>
+	<li><a href="https://sgbd.developpez.com/" data-idrub="13" data-niv="1">SGBD<span class="gabarit_tooltip">Systèmes de Gestion de Bases de Données</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://sgbd.developpez.com/" data-idrub="13" data-niv="2">SGBD &amp; SQL</a></li>
+				<li><a href="https://4d.developpez.com/" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://access.developpez.com/" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://big-data.developpez.com/" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://db2.developpez.com/" data-idrub="36" data-niv="2">DB2</a></li>
+				<li><a href="https://firebird.developpez.com/" data-idrub="73" data-niv="2">Firebird</a></li>
+				<li><a href="https://interbase.developpez.com/" data-idrub="32" data-niv="2">InterBase</a></li>
+				<li><a href="https://mysql.developpez.com/" data-idrub="31" data-niv="2">MySQL</a></li>
+				<li><a href="https://nosql.developpez.com/" data-idrub="114" data-niv="2">NoSQL</a></li>
+				<li><a href="https://postgresql.developpez.com/" data-idrub="33" data-niv="2">PostgreSQL</a></li>
+				<li><a href="https://oracle.developpez.com/" data-idrub="25" data-niv="2">Oracle</a></li>
+				<li><a href="https://sybase.developpez.com/" data-idrub="37" data-niv="2">Sybase</a></li>
+				<li><a href="https://sqlserver.developpez.com/" data-idrub="34" data-niv="2">SQL-Server</a></li>
+			</ul></li>
+	<li><a href="https://office.developpez.com/" data-idrub="54" data-niv="1">Office<span class="gabarit_tooltip">Bureautique pour l'entreprise</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://office.developpez.com/" data-idrub="54" data-niv="2">Microsoft Office</a></li>
+				<li><a href="https://access.developpez.com/" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://excel.developpez.com/" data-idrub="75" data-niv="2">Excel</a></li>
+				<li><a href="https://word.developpez.com/" data-idrub="76" data-niv="2">Word</a></li>
+				<li><a href="https://outlook.developpez.com/" data-idrub="77" data-niv="2">Outlook</a></li>
+				<li><a href="https://powerpoint.developpez.com/" data-idrub="78" data-niv="2">PowerPoint</a></li>
+				<li><a href="https://sharepoint.developpez.com/" data-idrub="79" data-niv="2">SharePoint</a></li>
+				<li><a href="https://project.developpez.com/" data-idrub="99" data-niv="2">Microsoft Project</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com/" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+			</ul></li>
+	<li><a href="https://solutions-entreprise.developpez.com/" data-idrub="86" data-niv="1">Solutions d'entreprise<span class="gabarit_tooltip">Autres logiciels pour l'entreprise</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://solutions-entreprise.developpez.com/" data-idrub="86" data-niv="2">Solutions d'entreprise</a></li>
+				<li><a href="https://big-data.developpez.com/" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://bpm.developpez.com/" data-idrub="134" data-niv="2">BPM</a></li>
+				<li><a href="https://business-intelligence.developpez.com/" data-idrub="61" data-niv="2">Business Intelligence</a></li>
+				<li><a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">ERP / PGI</a></li>
+				<li><a href="https://crm.developpez.com/" data-idrub="92" data-niv="2">CRM</a></li>
+				<li><a href="https://sas.developpez.com/" data-idrub="93" data-niv="2">SAS</a></li>
+				<li><a href="https://cloud-computing.developpez.com/" data-idrub="103" data-niv="2">Cloud Computing</a></li>
+				<li><a href="https://sap.developpez.com/" data-idrub="106" data-niv="2">SAP</a></li>
+				<li><a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">Microsoft BizTalk Server</a></li>
+				<li><a href="https://talend.developpez.com/" data-idrub="118" data-niv="2">Talend</a></li>
+				<li><a href="https://ibmcloud.developpez.com/" data-idrub="135" data-niv="2">IBM Cloud</a></li>
+			</ul></li>
+	<li><a href="https://applications.developpez.com/" data-idrub="88" data-niv="1">Applications<span class="gabarit_tooltip">Applications logicielles</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://applications.developpez.com/" data-idrub="88" data-niv="2">Applications</a></li>
+				<li><a href="https://open-source.developpez.com/" data-idrub="121" data-niv="2">Libres &amp; Open Source</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com/" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+				<li><a href="https://portail-projets.developpez.com/" data-idrub="98" data-niv="2">Projets</a></li>
+			</ul></li>
+	<li><a href="https://mobiles.developpez.com/" data-idrub="94" data-niv="1">Mobiles<span class="gabarit_tooltip">Logiciels et matériels mobiles</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://mobiles.developpez.com/" data-idrub="94" data-niv="2">Mobiles</a></li>
+				<li><a href="https://android.developpez.com/" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://ios.developpez.com/" data-idrub="101" data-niv="2">iOS</a></li>
+				<li><a href="https://windowsphone.developpez.com/" data-idrub="105" data-niv="2">Windows Phone</a></li>
+			</ul></li>
+	<li><a href="https://systeme.developpez.com/" data-idrub="30" data-niv="1" class="gabarit_selection">Systèmes<span class="gabarit_tooltip">Logiciels et matériels systèmes</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://systeme.developpez.com/" data-idrub="30" data-niv="2">Systèmes</a></li>
+				<li><a href="https://windows.developpez.com/" data-idrub="17" data-niv="2">Windows</a></li>
+				<li><a href="https://linux.developpez.com/" data-idrub="18" data-niv="2">Linux</a></li>
+				<li><a href="https://securite.developpez.com/" data-idrub="40" data-niv="2">Sécurité</a></li>
+				<li><a href="https://hardware.developpez.com/" data-idrub="64" data-niv="2">Hardware</a></li>
+				<li><a href="https://hpc.developpez.com/" data-idrub="139" data-niv="2">HPC</a></li>
+				<li><a href="https://mac.developpez.com/" data-idrub="57" data-niv="2">Mac</a></li>
+				<li><a href="https://raspberry-pi.developpez.com/" data-idrub="131" data-niv="2">Raspberry Pi</a></li>
+				<li><a href="https://reseau.developpez.com/" data-idrub="70" data-niv="2">Réseau</a></li>
+				<li><a href="https://green-it.developpez.com/" data-idrub="104" data-niv="2">Green IT</a></li>
+				<li><a href="https://embarque.developpez.com/" data-idrub="110" data-niv="2">Systèmes Embarqués</a></li>
+				<li><a href="https://virtualisation.developpez.com/" data-idrub="108" data-niv="2">Virtualisation</a></li>
+			</ul></li>
+</ul>
+
+<ul id="gabarit_barre1">
+	<li><a href="https://systeme.developpez.com/">Systèmes</a></li>
+	<li><a href="https://windows.developpez.com/">Windows</a></li>
+	<li><a href="https://linux.developpez.com/">Linux</a></li>
+	<li><a href="https://securite.developpez.com/">Sécurité</a></li>
+	<li><a href="https://hardware.developpez.com/">Hardware</a></li>
+	<li><a href="https://hpc.developpez.com/">HPC</a></li>
+	<li><a href="https://mac.developpez.com/">Mac</a></li>
+	<li class="gabarit_selection"><a href="https://raspberry-pi.developpez.com/">Raspberry Pi</a></li>
+	<li><a href="https://reseau.developpez.com/">Réseau</a></li>
+	<li><a href="https://green-it.developpez.com/">Green IT</a></li>
+	<li><a href="https://embarque.developpez.com/">Systèmes Embarqués</a></li>
+	<li><a href="https://virtualisation.developpez.com/">Virtualisation</a></li>
+</ul>
+
+<div id="gabarit_barre2">
+	<a class="gabarit_social gabarit_rss" href="http://http//raspberry-pi.developpez.com/index/rss" target="_blank" title="Flux RSS"></a>
+	<ul>
+		<li><a href="https://raspberry-pi.developpez.com/">Accueil Raspberry Pi</a></li>
+		<li><a href="https://raspberry-pi.developpez.com/cours-tutoriels/">Tutoriels Raspberry Pi</a></li>
+		<li><a href="https://www.developpez.net/forums/f2081/general-developpement/programmation-systeme/embarque/raspberry-pi/">Forum Raspberry Pi</a></li>
+		<li><a href="https://raspberry-pi.developpez.com/faq/">FAQ Raspberry Pi</a></li>
+		<li><a href="https://raspberry-pi.developpez.com/livres">Livres Raspberry Pi</a></li>
+		<li><a href="http://embarque.developpez.com/actu/87815/Bientot-une-nouvelle-rubrique-Raspberry-pi-Contribuez-avec-la-communaute/">Contribuez</a></li>
+	</ul>
+</div>
+
+</nav>
+</header>
+<section>
+
+<div class="contenuPage">		<article class="ArticleComplet" itemscope="" itemtype="http://schema.org/Article" style="margin: 0px 20px;">
+<meta itemprop="genre" content="informatique">
+<meta itemprop="inLanguage" content="fr-FR">
+		<div id="MicrosoftTranslatorWidget" style="border: 2px solid rgb(58, 87, 112); background-color: rgb(120, 173, 208); direction: ltr; position: absolute; width: 203px; min-height: 83px; background-repeat: repeat-x; background-image: url(&quot;data:image/x-ms-bmp;base64,Qk2eAAAAAAAAADYAAAAoAAAAAQAAABoAAAABABgAAAAAAGgAAAAAAAAAAAAAAAAAAAAAAAAAoIJZ/5x/V/+Ze1T/lXhS/5F1T/+OcU3/im5L/4ZrSP+CaEb/f2RE/3thQf93Xj//dFo8/6CCWf+khVv/p4le/6uMYP+vj2P/spNl/7aWZ/+6mWr/vpxs/8Ggbv/Fo3H/yaZz/8yqdv8=&quot;);" class=""><div id="MSTWContent"><div id="MSTWHeader" style="border-color: rgb(101, 147, 179);"><span class="MSTWBox"><span id="MSTWHeaderText" style="width: 160px;">Translate this page</span></span><span class="MSTWBox"><select name="MSTWMenu" id="MSTWMenu" style="visibility: visible;"><option value="af">Afrikaans</option><option value="ar">Arabic</option><option value="bn">Bangla</option><option value="bs-latn">Bosnian (Latin)</option><option value="bg">Bulgarian</option><option value="yue">Cantonese (Traditional)</option><option value="ca">Catalan</option><option value="zh-chs">Chinese Simplified</option><option value="zh-cht">Chinese Traditional</option><option value="hr">Croatian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="nl">Dutch</option><option selected="selected" value="en">English</option><option value="et">Estonian</option><option value="fj">Fijian</option><option value="fil">Filipino</option><option value="fi">Finnish</option><option value="de">German</option><option value="el">Greek</option><option value="ht">Haitian Creole</option><option value="he">Hebrew</option><option value="hi">Hindi</option><option value="mww">Hmong Daw</option><option value="hu">Hungarian</option><option value="id">Indonesian</option><option value="it">Italian</option><option value="ja">Japanese</option><option value="sw">Kiswahili</option><option value="tlh">Klingon</option><option value="ko">Korean</option><option value="lv">Latvian</option><option value="lt">Lithuanian</option><option value="mg">Malagasy</option><option value="ms">Malay</option><option value="mt">Maltese</option><option value="no">Norwegian Bokmål</option><option value="fa">Persian</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="otq">Querétaro Otomi</option><option value="ro">Romanian</option><option value="ru">Russian</option><option value="sm">Samoan</option><option value="sr-cyrl">Serbian (Cyrillic)</option><option value="sr-latn">Serbian (Latin)</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option value="es">Spanish</option><option value="sv">Swedish</option><option value="ty">Tahitian</option><option value="ta">Tamil</option><option value="th">Thai</option><option value="to">Tongan</option><option value="tr">Turkish</option><option value="uk">Ukrainian</option><option value="ur">Urdu</option><option value="vi">Vietnamese</option><option value="cy">Welsh</option><option value="yua">Yucatec Maya</option></select><a id="MSTWGoButton" title="Translate this page" class="MSTWButtonLink" style="background-repeat: repeat-x; background-image: url(&quot;data:image/x-ms-bmp;base64,Qk2GAAAAAAAAADYAAAAoAAAAAQAAABQAAAABABgAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAA6MOI/+XAhv/jvoT/4LyD/966gf/cuID/2bZ+/9ezff/VsXv/0q96/+jDiP/qxYn/7MeL/+/JjP/xy47/882P//bPkf/40pL/+tSU//3Wlf8=&quot;); border-color: rgb(101, 147, 179);" href="javascript:%20Translate%20this%20page"><img id="MSTWGoImage" src="data:image/gif;base64,R0lGODlhGAASAHAAACH5BAEAAP8ALAAAAAAYABIAhwAAAP%2f%2f%2fwAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAg8AP8JHEiwoMGDCBMqXMiwIcMAARwihAhRYkGKFC0KxIjRIkeODj9%2bfCiyYsOSHkFq7KhxY8SW%0d%0aMGPKRBgQADs%3d" style="border-width:0px;"></a></span></div><div id="MSTWFooter"><span id="MSTWBrand" class="MSTWBox"><a id="MSTWBrandLink" title="Microsoft® Translator" href="http://www.bing.com/translator?ref=MSTWidget" target="_blank"><span style="font-family: Segoe UI; direction: ltr;">Microsoft<sup style="vertical-align: super; font-size: 70%;">®</sup> Translator</span></a></span><span id="MSTWGetShare" class="MSTWBox"><a id="MSTWGetButton" title="Get this widget for your own site" class="MSTWButtonLink" href="http://www.microsofttranslator.com/widget/?ref=MSTWidget" target="_blank" style="border-color: rgb(101, 147, 179);"><img id="MSTWGetImage" src="data:image/gif;base64,R0lGODlhGAASAPcAAAAAAP%2f%2f%2fwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAAYABIA%0d%0aAAhBAP8JHEiwoMGDCBMqXMiwocOHCAMEGCgRYkWCFxlmxDhx4caCH0F2TBiSI8mRJw%2bWVIny38qI%0d%0aI19CnEmzpk2DAQEAOw%3d%3d" style="border-width:0px;"></a><a id="MSTWShareButton" title="Share" class="MSTWButtonLink" style="border-color: rgb(101, 147, 179);" href="mailto:?charset=utf-8&amp;subject=Check%20out%20this%20page%20in%20English%20translated%20from%20French&amp;body=Translated%3A%20http%3A%2F%2Fdeusyss.developpez.com%2Ftutoriels%2FRaspberryPi%2FPythonEtLeGpio%2F%23mstto%3Den%0D%0AOriginal%3A%20http%3A%2F%2Fdeusyss.developpez.com%2Ftutoriels%2FRaspberryPi%2FPythonEtLeGpio%2F%0D%0A%0D%0AAutomatic%20translation%20powered%20by%20Microsoft%C2%AE%20Translator%0D%0Ahttp%3A%2F%2Fwww.bing.com%2Ftranslator"><img id="MSTWShareImage" src="data:image/gif;base64,R0lGODlhGAASAPcAAAAAAP%2f%2f%2fwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%0d%0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAAYABIA%0d%0aAAhHAP8JHEiwoMGDCBMqXMiwocOHBQNInEiRokKJFwNc%2fKfxoMaOCDuCHChyo8CRIEcaLGmxZMKP%0d%0aITlmnPmyok2MEHPq3MlTYUAAOw%3d%3d" style="border-width:0px;"></a></span></div><div id="MSTWHidden" style="display: none;"><span id="MSTWCheckOut">Check out this page in {0} translated from {1}</span><span id="MSTWTranslatedFrom">translated from</span><span id="MSTWOriginal">Original:</span><span id="MSTWTranslated">Translated:</span><span id="MSTWPoweredBy">Automatic translation powered by Microsoft® Translator</span><span id="MSTWStart">Start translating</span><span id="MSTWStop">Stop translating</span><span id="MSTWClose">Close</span><span id="MSTWCloseShowOrig">Close and show original page</span><span id="MSTWLangNotSup"></span><span id="MSTWSelect">Select</span></div></div></div><script type="text/javascript">/*
+ <![CDATA[ */ setTimeout(function() { var s = 
+document.createElement("script"); s.type = "text/javascript"; s.charset =
+ "UTF-8"; s.src = ((location && location.href && 
+location.href.indexOf('https') == 0) ? 
+"https://ssl.microsofttranslator.com" : 
+"http://www.microsofttranslator.com" ) + 
+"/ajax/v2/widget.aspx?mode=Manual&from=fr&layout=ts"; var p = 
+document.getElementsByTagName('head')[0] || document.documentElement; 
+p.insertBefore(s, p.firstChild); }, 0); /* ]]> */</script>
+<header class="EnteteTitres">
+<h1 class="titre-article DecalageTraduction" itemprop="name">Raspberry Pi</h1>
+<h2 class="soustitre-article DecalageTraduction">
+    <b>Python et le port GPIO</b>
+  </h2>
+</header><nav class="nav-sommaire fixed2" role="navigation" style="height: 452px; width: 322px;">
+<header><h1 class="TitreHeader StopArrondi ToggleGecko">Table des matières<img class="ToggleImgPlier" title="Plier" alt="Plier" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/fleche-haut-bleue.png"><img class="ToggleImgDeplier" title="Déplier" alt="Déplier" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/fleche-bas-bleue.png" style="display:none;"></h1></header>
+<ul id="nav_sommaire_ul_principal" class="nav-sommaire-ul" style="overflow-y: scroll; height: 402px;">
+    <li><a class="summaryIndent0" href="#LI">I. Introduction</a></li>
+    <li><a class="summaryIndent0" href="#LII">II. Le Raspberry Pi</a><ul class="nav-sommaire-ul IndentationII">
+      
+      <li><a class="summaryIndent1" href="#LII-A">II-A. Présentation rapide</a></li>
+      <li><a class="summaryIndent1" href="#LII-B">II-B. Les systèmes d'exploitation disponibles</a></li>
+      <li><a class="summaryIndent1" href="#LII-C">II-C. Modèles et caractéristiques</a></li>
+      <li><a class="summaryIndent1" href="#LII-D">II-D. Le port GPIO</a><ul class="nav-sommaire-ul IndentationII-D">
+        
+        
+        
+        
+        
+        <li><a class="summaryIndent2" href="#LII-D-1">II-D-1. Raspberry Pi - modèles A et B</a></li>
+        <li><a class="summaryIndent2" href="#LII-D-2">II-D-2. Raspberry Pi - modèles A+, B+, et B2</a></li>
+        <li><a class="summaryIndent2" href="#LII-D-3">II-D-3. Activation de l'I2C</a></li>
+        <li><a class="summaryIndent2" href="#LII-D-4">II-D-4. Activation du SPI</a></li>
+        <li><a class="summaryIndent2" href="#LII-D-5">II-D-5. Activation de l'UART&nbsp;et des autres périphériques</a></li>
+      </ul></li>
+    </ul></li>
+    <li><a class="summaryIndent0" href="#LIII">III. Python et le port GPIO</a><ul class="nav-sommaire-ul IndentationIII">
+      
+      
+      <li><a class="summaryIndent1" href="#LIII-A">III-A. Les bibliothèques disponibles et recommandées</a></li>
+      <li><a class="summaryIndent1" href="#LIII-B">III-B. La bibliothèque GPIO</a><ul class="nav-sommaire-ul IndentationIII-B">
+        
+        
+        
+        
+        <li><a class="summaryIndent2" href="#LIII-B-1">III-B-1. Configuration générale</a></li>
+        <li><a class="summaryIndent2" href="#LIII-B-2">III-B-2. Configuration des entrées-sorties</a></li>
+        <li><a class="summaryIndent2" href="#LIII-B-3">III-B-3. Lire une entrée numérique</a></li>
+        <li><a class="summaryIndent2" href="#LIII-B-4">III-B-4. Changer l'état d'une sortie numérique</a></li>
+        <li><a class="summaryIndent2" href="#LIII-B-5">III-B-5. Connaître la configuration d'une entrée-sortie numérique</a></li>
+        <li><a class="summaryIndent2" href="#LIII-B-6">III-B-6. Remettre à zéro une entrée-sortie numérique</a></li>
+        <li><a class="summaryIndent2" href="#LIII-B-7">III-B-7. La PWM</a></li>
+        <li><a class="summaryIndent2" href="#LIII-B-8">III-B-8. Pull up et pull down</a></li>
+        <li><a class="summaryIndent2" href="#LIII-B-9">III-B-9. Interruption et détection de front</a></li>
+        <li><a class="summaryIndent2" href="#LIII-B-10">III-B-10. Le nécessaire pour l'I2C</a></li>
+        <li><a class="summaryIndent2" href="#LIII-B-11">III-B-11. Le nécessaire pour le SPI</a></li>
+      </ul></li>
+      <li><a class="summaryIndent1" href="#LIII-C">III-C. Mise en pratique</a><ul class="nav-sommaire-ul IndentationIII-C">
+        
+        
+        <li><a class="summaryIndent2" href="#LIII-C-1">III-C-1. Gestion d'une LED</a></li>
+        <li><a class="summaryIndent2" href="#LIII-C-2">III-C-2. Lecture d'un bouton</a></li>
+        <li><a class="summaryIndent2" href="#LIII-C-3">III-C-3. Pilotage d'un afficheur LCD</a></li>
+        <li><a class="summaryIndent2" href="#LIII-C-4">III-C-4. Lire un capteur de température I2C</a></li>
+        <li><a class="summaryIndent2" href="#LIII-C-5">III-C-5. Pilotage d'un périphérique SPI</a></li>
+      </ul></li>
+    </ul></li>
+    <li><a class="summaryIndent0" href="#LIV">IV. Allons plus loin</a></li>
+    <li><a class="summaryIndent0" href="#LV">V. Conclusion</a></li>
+    <li><a class="summaryIndent0" href="#LVI">VI. Remerciements</a></li>
+  </ul></nav>
+
+
+<div class="fixeMarge"><section itemprop="about" class="SectionSynopsis">
+    <p>Il est possible de trouver de multiples utilisations du Raspberry
+ Pi sur Internet&nbsp;: serveur, passerelle multimédia, PC d'appoint… 
+Tous ces projets mettent en œuvre le mini PC lui-même. </p>
+    <p>Cependant, au-delà de l'aspect mini PC embarqué, et de son OS 
+Linux, cette cible possède un atout important&nbsp;: son port 
+d'entrées-sorties, ou GPIO. Et ce dernier est souvent mal connu ou non 
+exploité.</p>
+    <p>
+      <a class="lienforum" href="https://www.developpez.net/forums/showthread.php?t=1520428">22&nbsp;commentaires</a> <img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/kitstars-5-0.png" style="border: none" alt="Donner une note à l'article (5)" width="66" height="14">    </p>
+  <p class="TextNbrVues" style="display: block;">Article lu <span id="NbrVues">230881</span> fois.</p></section></div><div class="InfoAuthArtBook" style="height: 184px;">
+	<section class="SectionAuteurs">
+	<header><h1 class="TitreHeader">L'auteur</h1></header>
+<p class="auteur" itemprop="name" itemscope="" itemtype="http://schema.org/Person"><a itemprop="url" class="auteur" href="http://www.developpez.net/forums/u359275/deusyss/"><span itemprop="author">Alexandre GALODE</span></a><a class="homepage" href="http://deusyss.developpez.com/"><img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/kitbm-site-personnel.png" title="Site personnel" alt="Site personnel" style="vertical-align:middle;"></a><a itemprop="url" class="homepage" href="http://diablotronic.free.fr/"><img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/kitbm-blog.png" title="Blog" alt="Blog" style="vertical-align:middle;"></a></p>
+</section>
+<section class="SectionInformationArticle">
+<header><h1 class="TitreHeader">L'article</h1></header>
+
+<p class="InfoArticle">Publié&nbsp;le&nbsp;<span itemprop="datePublished">16&nbsp;mai&nbsp;2015&nbsp;</span></p>
+    
+    
+<p class="InfoArticle"><img alt="Public visé : tout le monde" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/public-vise-1.png"></p>
+  <p>
+<span class="lientelechargementpdf"><a class="lientelechargement" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/RaspberryPi-GPIO01.pdf" title="Télécharger la version PDF de cet article.">Version PDF</a></span>
+<span class="lientelechargementzip"><a class="lientelechargement" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/RaspberryPi-GPIO01.zip" title="Télécharger la version HTML de cet article.">Version hors-ligne</a></span></p>
+<p><span class="lientelechargementebook"><a class="lientelechargement" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/RaspberryPi-GPIO01.epub" title="Télécharger la version ePub de l'article compatible avec la plupart des liseuses non Kindle (Amazon).">ePub</a></span>, <span class="lientelechargementebook"><a class="lientelechargement" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/RaspberryPi-GPIO01.azw" title="Télécharger la version Azw spécifique aux liseuses Kindle (Amazon).">Azw</a></span> et <span class="lientelechargementebook"><a class="lientelechargement" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/RaspberryPi-GPIO01.mobi" title="Télécharger la version Mobi de l'article compatible avec les liseuses Amazon.">Mobi</a></span></p>
+</section>
+<section class="SectionBookmarks">
+<header><h1 class="TitreHeader">Liens&nbsp;sociaux</h1></header>
+<div class="InfoBookmarks"><a title="Viadeo" href="http://www.viadeo.com/shareit/share/?url=http%3A%2F%2Fdeusyss.developpez.com%2Ftutoriels%2FRaspberryPi%2FPythonEtLeGpio%2F&amp;Title=Raspberry+Pi" rel="nofollow"><img alt="Viadeo" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/kitbm-viadeo.png"></a>&nbsp;<a title="Twitter" href="http://twitter.com/timeline/home?status=http%3A%2F%2Fdeusyss.developpez.com%2Ftutoriels%2FRaspberryPi%2FPythonEtLeGpio%2F" rel="nofollow"><img alt="Twitter" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/kitbm-twitter.png"></a>&nbsp;<a title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fdeusyss.developpez.com%2Ftutoriels%2FRaspberryPi%2FPythonEtLeGpio%2F" rel="nofollow"><img alt="Facebook" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/kitbm-facebook.png"></a>&nbsp;<a title="Google +" href="https://plus.google.com/share?url=http%3A%2F%2Fdeusyss.developpez.com%2Ftutoriels%2FRaspberryPi%2FPythonEtLeGpio%2F" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/gplus-16.png" alt="Share on Google+"></a>&nbsp;<script src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/in.js" type="text/javascript"> lang: fr_FR</script>
+			<span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1520354702618_0"><a id="li_ui_li_gen_1520354702618_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1520354702618_0-logo">in</span><span id="li_ui_li_gen_1520354702618_0-title"><span id="li_ui_li_gen_1520354702618_0-mark"></span><span id="li_ui_li_gen_1520354702618_0-title-text">Partager</span></span></a></span></span></span><script type="IN/Share+init" data-url="$url"></script>&nbsp;</div>
+</section></div><section itemprop="articleBody" class="articleBody" style="margin-left: 347px; margin-top: 20px; clear: none;">
+    
+		<h1 class="TitreSection0" id="LI">I. Introduction<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/1000020100000129000000E4E30C1DFF.png" alt="Image non disponible" width="297" height="228"><figcaption class="figure-img-caption TextAlign-center">Source:http://www.clker.com/clipart-raspberry-pi.html</figcaption></figure></div>
+      <p>Ce tutoriel vise à vous fournir l'essentiel des informations 
+nécessaires afin de vous permettre de créer vos propres projets, tout en
+ exploitant au mieux le port GPIO.</p>
+      <p>Le port GPIO (General Purpose Input/Output, ou Entrées/Sorties 
+pour un usage générique) mettra à votre disposition de nombreuses 
+entrées-sorties, une alimentation, un port SPI, un port I2C, et un port 
+série.</p>
+      <p>Après une rapide présentation du Raspberry Pi, de ses 
+différentes versions existantes, et des caractéristiques liées, nous 
+nous pencherons sur le fonctionnement et la programmation du port GPIO.</p>
+      <p>Enfin, nous finirons par une mise en pratique de la théorie que nous aurons vue précédemment.</p>
+      <p>Bien que nous essayons de rester le plus clair possible, il se 
+peut que certains concepts électroniques soient néanmoins évoqués. Je 
+vous renvoie alors vers votre moteur de recherche préféré afin de mieux 
+les appréhender.</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LII">II. Le Raspberry Pi<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      
+		<h2 class="TitreSection1" id="LII-A">II-A. Présentation rapide<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Le Raspberry Pi est une cible embarquée de type mini PC à moins de 50&nbsp;€.</p>
+        <p>Le but initial du projet était de permettre aux étudiants de s'équiper du même matériel qu'en cours, et ce à moindres frais.</p>
+        <p>Après plusieurs années de développement, et plusieurs 
+versions, le projet a bien évolué. Malgré son faible coût, la carte 
+dispose d'un panel d'entrées-sorties honorable et se prête aussi bien à 
+des applications statiques qu'embarquées.</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LII-B">II-B. Les systèmes d'exploitation disponibles<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Bien que consistant en une cible embarquée, le Raspberry Pi 
+dispose néanmoins d'un OS officiel appréciable, et non des moindres, 
+puisqu'il s'agit tout simplement d'un Linux, entre autres une Debian. 
+Cet OS a été surnommé <a class=" tooltip blue-tooltip lienArticle https" href="https://www.raspberrypi.org/downloads/">Raspbian<span>https://www.raspberrypi.org/downloads/</span></a>.</p>
+        <p>La couche graphique est, par défaut, totalement désactivée, mais est très simple à lancer.</p>
+        <p>La communauté étant très active sur notre plateforme adorée, 
+il est également possible d'y retrouver, entre autres, une Fedora, ou 
+encore XBMC/Kodi, ou OSMX.</p>
+        <p>Parmi les OS annoncés dans l'avenir proche, nous pourrons citer <a class=" tooltip blue-tooltip lienArticle simple" href="http://www.developpez.com/actu/80907/Raspberry-Pi-2-six-fois-plus-puissant-pour-le-meme-prix-le-PC-prend-en-charge-Windows-10-qui-sera-disponible-gratuitement/">le prochain Microsoft Windows<span>http://www.developpez.com/actu/80907/Raspberry-Pi-2-six-fois-plus-puissant-pour-le-meme-prix-le-PC-prend-en-charge-Windows-10-qui-sera-disponible-gratuitement/</span></a>, ainsi que Firefox OS.</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LII-C">II-C. Modèles et caractéristiques<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Nous nous pencherons ici sur les modèles les plus couramment 
+diffusés et ferons l'impasse sur les tout premiers modèles, ainsi que 
+sur la gamme professionnelle, au format DIMM.</p>
+        <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/100002010000029C000002ED0EFBA1DE.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/100002010000029C000002ED0EFBA1DE.png" alt="Image non disponible" width="290" height="325"></a><figcaption class="figure-img-caption TextAlign-center">Source:http://fr.wikipedia.org/wiki/Raspberry_Pi</figcaption></figure></div>
+        <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+          <tbody><tr>
+            <td class="colonne" style="text-align:center;width:20%;background-color:#e6e6ff;">
+              <p>
+                <b>Modèle</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;width:16%;background-color:#ffffcc;">
+              <p>
+                <b>A</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;width:15%;background-color:#ffffcc;">
+              <p>
+                <b>A+</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;width:15%;background-color:#ffffcc;">
+              <p>
+                <b>B</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;width:17%;background-color:#ffffcc;">
+              <p>
+                <b>B+</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;width:17%;background-color:#ffffcc;">
+              <p>
+                <b>B2</b>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>CPU</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="4">
+              <p>Monocœur ARM 700 MHz</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>Quadricœur ARM 900 MHz</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>GPU</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="5">
+              <p>Décodeur vidéo Broadcam VideoCore IV</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>RAM</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="2">
+              <p>256 MO</p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="2">
+              <p>512 MO</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>1 GO</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>USB</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="2">
+              <p>1 * USB2.0</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>2 * USB2.0</p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="2">
+              <p>4 * USB2.0</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>Audio/vidéo</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>Jack 3.5, composite et HDMI</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>HDMI et jack audio/vidéo</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>Jack 3.5, composite et HDMI</p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="2">
+              <p>HDMI et jack audio/vidéo</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>Ethernet</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>0</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>10/100</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>0</p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="2">
+              <p>10/100</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>Entrées/sorties</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>GPIO 26 pts</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>GPIO 40 pts</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>GPIO 26 pts</p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="2">
+              <p>GPIO 40 pts</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>OS</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="5">
+              <p>Officiel&nbsp;: Raspbian<br>
+			Tiers&nbsp;: Fedora, XBMC/Kodi, OSMC</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>Stockage</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>SD</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>Micro SD</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>SD</p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="2">
+              <p>Micro SD</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>Dimensions</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>86*54*17</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>65*54*17</p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="3">
+              <p>86*54*17</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>Poids</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>45g</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>23g</p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="3">
+              <p>45g</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;background-color:#e6e6ff;">
+              <p>
+                <b>Consommation</b>
+              </p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>1.5W</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>1W</p>
+            </td>
+            <td class="colonne" style="text-align:center;">
+              <p>3.5W</p>
+            </td>
+            <td class="colonne" style="text-align:center;" colspan="2">
+              <p>3W</p>
+            </td>
+          </tr>
+        </tbody></table></div>
+        <div class="imgtext-warning">
+          <p>L'alimentation, quelle que soit la carte, s'effectue par un
+ connecteur micro&#8209;USB. Les premières générations pouvaient être 
+alimentées par un port USB, via un HUB. Ce n'est plus le cas des 
+nouvelles versions (A+/B+/B2).</p>
+        </div>
+        <p>Ainsi, comme vous pouvez le constater, il existe toujours la 
+possibilité de trouver un modèle plus adapté à son projet que les 
+autres.</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LII-D">II-D. Le port GPIO<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <div class="imgtext-warning">
+          <p>Les GPIO ne possèdent aucune protection. Il ne faut donc 
+pas oublier d'utiliser des buffers ou des optocoupleurs si vous avez des
+ doutes quant à votre montage.</p>
+        </div>
+        <div class="imgtext-info">
+          <p>Les modèles A et B possédaient un port GPIO à 26 points. 
+Les modèles A+, B+ et B2 possèdent un port GPIO à 40 points, 
+correspondant aux 26 points des modèles A/B plus 14 points 
+supplémentaires. Un circuit conçu pour les versions A/B est donc 
+compatible A+/B+/B2.</p>
+          <p>Pour la suite nous présenterons les deux versions à chaque fois.</p>
+        </div>
+        <div class="imgtext-warning">
+          <p>Concernant les modèles A et B, il y a eu plusieurs 
+révisions. Le câblage du GPIO a été modifié entre ces différentes 
+versions. Le GPIO des versions A et B que nous verrons ici correspond à 
+la dernière révision, qui est également la plus répandue&nbsp;: la 2.1.</p>
+        </div>
+        <div class="imgtext-warning">
+          <p>Les entrées-sorties sont de type CMOS, et fonctionnent donc
+ en +3.3V. N'essayez surtout pas de brancher des circuits TTL (+5V) sur 
+les entrées-sorties, sans adaptation. Vous risqueriez de détruire votre 
+Raspberry Pi.</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LII-D-1">II-D-1. Raspberry Pi - modèles A et B<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/1000020100000211000001252655A6BB.png" alt="Image non disponible" width="529" height="293"><figcaption class="figure-img-caption TextAlign-center">Fonctionnalités normales du port GPIO</figcaption></figure></div>
+          <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/10000201000002110000012646FC1CA4.png" alt="Image non disponible" width="529" height="294"><figcaption class="figure-img-caption TextAlign-center">Fonctionnalités étendues du port GPIO</figcaption></figure></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LII-D-2">II-D-2. Raspberry Pi - modèles A+, B+, et B2<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/10000201000002B400000126A9B39DF6.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/10000201000002B400000126A9B39DF6.png" alt="Image non disponible" width="550" height="233"></a><figcaption class="figure-img-caption TextAlign-center">Fonctionnalités normales du port GPIO</figcaption></figure></div>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/10000201000002B4000001268CC8D3D9.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/10000201000002B4000001268CC8D3D9.png" alt="Image non disponible" width="550" height="233"></a><figcaption class="figure-img-caption TextAlign-center">Fonctionnalités étendues du port GPIO</figcaption></figure></div>
+          <p>L'ensemble de ces fonctionnalités peuvent être activées une à une selon vos besoins. </p>
+          <p>Dans le cas du SPI, on remarquera qu'il y a deux 
+«&nbsp;Chip Enable&nbsp;». Nativement, le Raspberry Pi est donc capable 
+de gérer deux SPI en parallèle.</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LII-D-3">II-D-3. Activation de l'I2C<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>La méthode que nous allons voir est la méthode standardisée
+ à partir des versions «&nbsp;+&nbsp;». Elle est donc compatible modèles
+ A+, B+, B2.</p>
+          <ul class="ListeDVP">
+            <li>Ouvrez un terminal, depuis une interface graphique, et/ou lancez la commande suivante&nbsp;:</li>
+          </ul>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e743">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e743" onclick="selectionCode('contenuCoded0e743');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e743" class="contenuCode">sudo raspi<code class="python_operator">-</code>config</code></pre></div>
+          <ul class="ListeDVP">
+            <li>Cela lance l'interface de configuration du Raspberry Pi, sélectionnez «&nbsp;Advanced Options&nbsp;» puis validez&nbsp;:</li>
+          </ul>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/100002010000027F000000FF62F03FA7.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/100002010000027F000000FF62F03FA7.png" alt="Image non disponible" width="550" height="219"></a></figure></div>
+          <ul class="ListeDVP">
+            <li>Sur le nouvel écran, sélectionnez «&nbsp;I2C&nbsp;» puis validez&nbsp;:</li>
+          </ul>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/100002010000027E00000102A3116A12.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/100002010000027E00000102A3116A12.png" alt="Image non disponible" width="550" height="222"></a></figure></div>
+          <ul class="ListeDVP">
+            <li>Répondez «&nbsp;Yes&nbsp;» à toutes les questions qui suivent.</li>
+            <li>
+              <p>Rebootez votre machine.</p>
+              <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e775">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e775" onclick="selectionCode('contenuCoded0e775');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e775" class="contenuCode">sudo reboot</code></pre></div>
+            </li>
+            <li>Testez que l'I2C est bien reconnu avec la commande suivante (elle doit vous renvoyer une ligne d'information)&nbsp;:</li>
+          </ul>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e783">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e783" onclick="selectionCode('contenuCoded0e783');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e783" class="contenuCode">lsmod <code class="python_operator">|</code> grep i2c_</code></pre></div>
+          <p>Voilà, vous disposez de l'I2C activé par défaut sur votre Raspberry Pi.</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LII-D-4">II-D-4. Activation du SPI<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>La méthode que nous allons voir est la méthode standardisée
+ à partir des versions «&nbsp;+&nbsp;». Elle est donc compatible modèles
+ A+, B+, B2.</p>
+          <ul class="ListeDVP">
+            <li>Ouvrez un terminal, depuis une interface graphique, et/ou lancez la commande suivante&nbsp;:</li>
+          </ul>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e807">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e807" onclick="selectionCode('contenuCoded0e807');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e807" class="contenuCode">sudo raspi<code class="python_operator">-</code>config</code></pre></div>
+          <ul class="ListeDVP">
+            <li>Cela lance l'interface de configuration du Raspberry Pi, sélectionnez «&nbsp;Advanced Options&nbsp;» puis validez&nbsp;:</li>
+          </ul>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/100002010000027F000000FF62F03FA7.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/100002010000027F000000FF62F03FA7.png" alt="Image non disponible" width="550" height="219"></a></figure></div>
+          <ul class="ListeDVP">
+            <li>Sur le nouvel écran, sélectionnez «&nbsp;SPI&nbsp;» puis validez&nbsp;:</li>
+          </ul>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/100002010000027E0000010D6B3E0C40.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/100002010000027E0000010D6B3E0C40.png" alt="Image non disponible" width="550" height="231"></a></figure></div>
+          <ul class="ListeDVP">
+            <li>Répondez «&nbsp;Yes&nbsp;» à toutes les questions qui suivent.</li>
+            <li>
+              <p>Rebootez votre machine.</p>
+              <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e839">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e839" onclick="selectionCode('contenuCoded0e839');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e839" class="contenuCode">sudo reboot</code></pre></div>
+            </li>
+            <li>Testez que le SPI est bien reconnu avec la commande suivante (elle doit vous renvoyer une ligne d'information)&nbsp;:</li>
+          </ul>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e847">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e847" onclick="selectionCode('contenuCoded0e847');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e847" class="contenuCode">lsmod <code class="python_operator">|</code> grep spi_</code></pre></div>
+          <p>Voilà, vous disposez du SPI activé par défaut sur votre Raspberry Pi.</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LII-D-5">II-D-5. Activation de l'UART&nbsp;et des autres périphériques<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Je pense que vous avez dès à présent compris comment activer ou non les différentes options de votre Raspberry Pi.</p>
+          <ul class="ListeDVP">
+            <li>Ouvrez un terminal, depuis une interface graphique, et/ou lancez la commande suivante&nbsp;:</li>
+          </ul>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e871">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e871" onclick="selectionCode('contenuCoded0e871');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e871" class="contenuCode">sudo raspi<code class="python_operator">-</code>config</code></pre></div>
+          <ul class="ListeDVP">
+            <li>Cela lance l'interface de configuration du Raspberry Pi, sélectionnez «&nbsp;Advanced Options&nbsp;» puis validez&nbsp;:</li>
+          </ul>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/100002010000027F000000FF62F03FA7.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/100002010000027F000000FF62F03FA7.png" alt="Image non disponible" width="550" height="219"></a></figure></div>
+          <ul class="ListeDVP">
+            <li>Sur le nouvel écran, sélectionnez l'option que vous voulez paramétrer, ici «&nbsp;serial&nbsp;» puis validez.</li>
+          </ul>
+          <ul class="ListeDVP">
+            <li>Répondez «&nbsp;Yes&nbsp;» à toutes les questions qui suivent.</li>
+            <li>Rebootez votre machine&nbsp;:</li>
+          </ul>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e900">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e900" onclick="selectionCode('contenuCoded0e900');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e900" class="contenuCode">sudo reboot</code></pre></div>
+          <p>Bien entendu, il vous faudra à chaque fois une bibliothèque adaptée pour pouvoir utiliser votre périphérique.</p>
+        </div>
+      </div>
+    </div>
+    
+		<h1 class="TitreSection0" id="LIII">III. Python et le port GPIO<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Pour la suite, nous partirons sur l'hypothèse que nous développons sur le dernier modèle à savoir un Raspberry Pi B2.</p>
+      
+		<h2 class="TitreSection1" id="LIII-A">III-A. Les bibliothèques disponibles et recommandées<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Il existe de nombreuses bibliothèques dédiées au Raspberry Pi. Elles sont stockées, pour la plupart, sur Pypi. </p>
+        <p>Celle que nous étudierons ici est la bibliothèque historique&nbsp;: RPi.GPIO. </p>
+        <p>Pour l'installer, il suffit donc d'un simple pip install&nbsp;:</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e931">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e931" onclick="selectionCode('contenuCoded0e931');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e931" class="contenuCode">pip install RPi.GPIO</code></pre></div>
+        <p>Si vous ne possédez pas encore pip, il vous suffit de charger
+ get-pip.py, puis de le lancer via la commande ci-après. Une connexion 
+Internet vous sera nécessaire. La première ligne de commande est pour 
+ceux qui exécuteraient le tout sans interface graphique.</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e937">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e937" onclick="selectionCode('contenuCoded0e937');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e937">wget https:<code class="python_operator">/</code><code class="python_operator">/</code>bootstrap.pypa.io<code class="python_operator">/</code>get<code class="python_operator">-</code>pip.py
+python get<code class="python_operator">-</code>pip.py
+</code></pre></div></div>
+        <p>Bien entendu, n'oubliez pas d'utiliser un «&nbsp;sudo&nbsp;» si nécessaire.</p>
+        <div class="imgtext-warning">
+          <p>Pour rappel, Python est sensible à la casse. Attention donc
+ à l'import de RPi.GPIO. RPi s'écrit avec un i minuscule, et tout le 
+reste est en majuscules.</p>
+        </div>
+        <div class="imgtext-warning">
+          <p>Le port GPIO n'est accessible qu'en mode root. N'oubliez 
+donc pas de lancer Python avec la commande sudo, sinon cela ne 
+fonctionnera pas.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e972">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e972" onclick="selectionCode('contenuCoded0e972');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e972" class="contenuCode">sudo python mon_script.py</code></pre></div>
+        </div>
+      </div>
+      
+		<h2 class="TitreSection1" id="LIII-B">III-B. La bibliothèque GPIO<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e982">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e982" onclick="selectionCode('contenuCoded0e982');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e982" class="contenuCode"><code class="python_keyword1">import</code> RPi.GPIO <code class="python_keyword1">as</code> GPIO</code></pre></div>
+        <p>Concernant l'état des entrées-sorties (E/S), le module RPi.GPIO accepte des variables dédiées, des entiers ou des booléens. </p>
+        <p>Ainsi, l'état haut peut valoir au choix <b>GPIO.HIGH</b>, <b>1</b> ou encore <b>True</b>. De même, l'état bas peut valoir <b>GPIO.LOW</b>, <b>0</b> ou <b>False</b>.</p>
+        
+		<h3 class="TitreSection2" id="LIII-B-1">III-B-1. Configuration générale<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Le Raspberry Pi autorise deux numérotations&nbsp;: celle de la sérigraphie du connecteur de la carte (<b>GPIO.BOARD</b>), ou la numérotation électronique de la puce (<b>GPIO.BCM</b>). À vous de choisir celle que vous voulez. </p>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/10000201000002B400000126AC7DABEE.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/10000201000002B400000126AC7DABEE.png" alt="Image non disponible" width="550" height="233"></a></figure></div>
+          <p>En noir la numérotation GPIO.BOARD. En rouge, la numérotation GPIO.BCM</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1033">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1033" onclick="selectionCode('contenuCoded0e1033');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br>5.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e1033">GPIO.<code class="python_function">setmode</code><code class="python_operator">(</code>GPIO.BOARD)
+GPIO.<code class="python_function">setmode</code><code class="python_operator">(</code>GPIO.BCM)
+
+<code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">On</code><code class="python_comment1"> </code><code class="python_comment1">peut</code><code class="python_comment1"> </code><code class="python_comment1">aussi</code><code class="python_comment1"> </code><code class="python_comment1">demander</code><code class="python_comment1"> </code><code class="python_comment1">la</code><code class="python_comment1"> </code><code class="python_comment1">configuration</code><code class="python_comment1"> </code><code class="python_comment1">etablie</code>
+configuration <code class="python_operator">=</code> GPIO.<code class="python_function">getmode</code><code class="python_operator">(</code>)
+</code></pre></div></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-B-2">III-B-2. Configuration des entrées-sorties<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Afin d'initialiser une E/S, il suffit de préciser son 
+numéro, fonction de la configuration précédemment choisie, son 
+paramétrage (entrée ou sortie) et éventuellement son état initial (pour 
+une sortie).</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1104">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1104" onclick="selectionCode('contenuCoded0e1104');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e1104">GPIO.<code class="python_function">setup</code><code class="python_operator">(</code><code class="python_digit">12</code>, GPIO.IN)                    <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">broche</code><code class="python_comment1"> </code><code class="python_comment1">12</code><code class="python_comment1"> </code><code class="python_comment1">est</code><code class="python_comment1"> </code><code class="python_comment1">une</code><code class="python_comment1"> </code><code class="python_comment1">entree</code><code class="python_comment1"> </code><code class="python_comment1">numerique</code>
+GPIO.<code class="python_function">setup</code><code class="python_operator">(</code><code class="python_digit">12</code>, GPIO.OUT)                   <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">broche</code><code class="python_comment1"> </code><code class="python_comment1">12</code><code class="python_comment1"> </code><code class="python_comment1">est</code><code class="python_comment1"> </code><code class="python_comment1">une</code><code class="python_comment1"> </code><code class="python_comment1">sortie</code><code class="python_comment1"> </code><code class="python_comment1">numerique</code>
+GPIO.<code class="python_function">setup</code><code class="python_operator">(</code><code class="python_digit">12</code>, GPIO.OUT, initial<code class="python_operator">=</code>GPIO.HIGH)<code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">broche</code><code class="python_comment1"> </code><code class="python_comment1">12</code><code class="python_comment1"> </code><code class="python_comment1">est</code><code class="python_comment1"> </code><code class="python_comment1">une</code><code class="python_comment1"> </code><code class="python_comment1">sortie</code><code class="python_comment1"> </code><code class="python_comment1">initialement</code><code class="python_comment1"> </code><code class="python_comment1">a</code><code class="python_comment1"> </code><code class="python_comment1">l'etat</code><code class="python_comment1"> </code><code class="python_comment1">haut</code>
+</code></pre></div></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-B-3">III-B-3. Lire une entrée numérique<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Afin de lire l'état d'une entrée, il suffit de préciser le numéro de l'E/S.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1237">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1237" onclick="selectionCode('contenuCoded0e1237');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1237" class="contenuCode">GPIO.<a class="python_keyword2 lien_documentation_code" target="_blank" href="http://docs.python.org/library/functions.html?highlight=input#input"><span>input</span></a><code class="python_operator">(</code><code class="python_digit">12</code>)</code></pre></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-B-4">III-B-4. Changer l'état d'une sortie numérique<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Pour modifier l'état d'une sortie, il faut indiquer le numéro de la sortie, ainsi que l'état désiré.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1256">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1256" onclick="selectionCode('contenuCoded0e1256');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1256" class="contenuCode">GPIO.<code class="python_function">output</code><code class="python_operator">(</code><code class="python_digit">12</code>, GPIO.LOW)</code></pre></div>
+          <p>Un <span class="italique">toggle</span> (inversement d'état) s'effectue en inversant l'état lu.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1272">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1272" onclick="selectionCode('contenuCoded0e1272');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1272" class="contenuCode">GPIO.<code class="python_function">output</code><code class="python_operator">(</code><code class="python_digit">12</code>, <code class="python_keyword1">not</code> GPIO.<a class="python_keyword2 lien_documentation_code" target="_blank" href="http://docs.python.org/library/functions.html?highlight=input#input"><span>input</span></a><code class="python_operator">(</code><code class="python_digit">12</code>))</code></pre></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-B-5">III-B-5. Connaître la configuration d'une entrée-sortie numérique<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>On peut interroger l'E/S afin de connaître son état de configuration. Les valeurs renvoyées sont alors <b>GPIO.INPUT</b>, <b>GPIO.OUTPUT</b>, <b>GPIO.SPI</b>, <b>GPIO.I2C</b>, <b>GPIO.HARD_PWM</b>, <b>GPIO.SERIAL</b> ou <b>GPIO.UNKNOWN</b>.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1322">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1322" onclick="selectionCode('contenuCoded0e1322');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e1322">state <code class="python_operator">=</code> GPIO.<code class="python_function">gpio_function</code><code class="python_operator">(</code>pin)
+<code class="python_keyword1">print</code><code class="python_operator">(</code>state)
+</code></pre></div></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-B-6">III-B-6. Remettre à zéro une entrée-sortie numérique<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>À la fin de tout programme, il est conseillé d'effectuer 
+une purge des ressources afin de les remettre dans l'état où le 
+programme les a trouvées. On n'impactera ainsi que les E/S utilisées.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1350">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1350" onclick="selectionCode('contenuCoded0e1350');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1350" class="contenuCode">GPIO.<code class="python_function">cleanup</code><code class="python_operator">(</code>)</code></pre></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-B-7">III-B-7. La PWM<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>La PWM pour <span class="italique">Pulse Width Modulation</span>
+ consiste en un signal carré dont on fait varier le rapport cyclique, en
+ d'autres termes, dont on fait varier la durée de l'état haut, par 
+rapport à l'état bas.</p>
+          <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/10000015000000C90000008D491973D6.gif" alt="Image non disponible" width="201" height="141"><figcaption class="figure-img-caption TextAlign-center">Source&nbsp;: http://commons.wikimedia.org/wiki/File:PWM_duty_cycle_with_label.gif</figcaption></figure></div>
+          <p>La PWM fonctionne comme un objet, en Python et sur 
+Raspberry Pi. Il faut donc commencer par créer une instance PWM, en 
+déclarant le canal (<span class="italique">channel</span>) utilisé, 
+ainsi que la fréquence désirée. En cours de route, vous pourrez changer 
+aussi bien le rapport cyclique, que la fréquence.</p>
+          <p>Bien que n'ayant pas été notée sur le brochage du 
+connecteur du GPIO, pour des raisons de clarté, la PWM est disponible 
+sur GPIO18.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1381">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1381" onclick="selectionCode('contenuCoded0e1381');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br>5.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e1381">p <code class="python_operator">=</code> GPIO.<code class="python_function">PWM</code><code class="python_operator">(</code>channel, frequence)
+p.<code class="python_function">start</code><code class="python_operator">(</code>rapport_cyclique) <code class="python_comment1">#</code><code class="python_comment1">ici,</code><code class="python_comment1"> </code><code class="python_comment1">rapport_cyclique</code><code class="python_comment1"> </code><code class="python_comment1">vaut</code><code class="python_comment1"> </code><code class="python_comment1">entre</code><code class="python_comment1"> </code><code class="python_comment1">0.0</code><code class="python_comment1"> </code><code class="python_comment1">et</code><code class="python_comment1"> </code><code class="python_comment1">100.0</code>
+p.<code class="python_function">ChangeFrequency</code><code class="python_operator">(</code>nouvelle_frequence)
+p.<code class="python_function">ChangeDutyCycle</code><code class="python_operator">(</code>nouveau_rapport_cyclique)
+p.<code class="python_function">stop</code><code class="python_operator">(</code>)
+</code></pre></div></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-B-8">III-B-8. Pull up et pull down<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Afin d'éviter de laisser flottante toute entrée, il est 
+possible de connecter des résistances de pull-up ou de pull-down, au 
+choix, en interne.</p>
+          <p>Pour information, une résistance de pull-up ou de pull-down
+ a pour but d'éviter de laisser une entrée ou une sortie dans un état 
+incertain, en forçant une connexion à la masse ou à un potentiel donné.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1465">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1465" onclick="selectionCode('contenuCoded0e1465');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e1465">GPIO.<code class="python_function">setup</code><code class="python_operator">(</code>channel, GPIO.IN, pull_up_down<code class="python_operator">=</code>GPIO.PUD_UP)
+GPIO.<code class="python_function">setup</code><code class="python_operator">(</code>channel, GPIO.IN, pull_up_down<code class="python_operator">=</code>GPIO.PUD_DOWN)
+</code></pre></div></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-B-9">III-B-9. Interruption et détection de front<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>La détection de front est quelque chose d'important, et liée aux interruptions. Il existe trois façons de procéder.</p>
+          <p>La première consiste à bloquer l'exécution du programme jusqu'à ce que l'événement se produise.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1500">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1500" onclick="selectionCode('contenuCoded0e1500');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1500" class="contenuCode">GPIO.<code class="python_function">wait_for_edge</code><code class="python_operator">(</code>channel, GPIO.RISING)</code></pre></div>
+          <p>Le second paramètre peut ici valoir <b>GPIO.RISING</b>, <b>GPIO.FALLING</b> ou <b>GPIO.BOTH</b>.</p>
+          <p>La seconde solution est liée à l'utilisation d'une boucle. 
+On ajoute des événements à écouter sur un canal, et au sein de la boucle
+ <span class="codeinline"><code class="python_keyword1">while</code></span>, on teste si quelque chose s'est produit sur un des canaux écoutés.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1527">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1527" onclick="selectionCode('contenuCoded0e1527');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e1527">GPIO.<code class="python_function">add_event_detect</code><code class="python_operator">(</code>channel, GPIO.RISING)
+While <code class="python_keyword3">True</code>:
+    <code class="python_keyword1">if</code> GPIO.<code class="python_function">event_detected</code><code class="python_operator">(</code>channel):
+        <code class="python_keyword1">print</code><code class="python_operator">(</code><code class="python_literal1">"</code><code class="python_literal1">Bouton</code><code class="python_literal1"> </code><code class="python_literal1">appuye</code><code class="python_literal1">"</code>)
+</code></pre></div></div>
+          <p>Enfin, la dernière solution est celle qui est la plus 
+proche du concept d'interruption sur microcontrôleur. Pour ce faire, en 
+cas d'événement, un thread parallèle est lancé en cas d'interruption. 
+Trois valeurs sont possibles&nbsp;: front montant (<b>GPIO.RISING</b>), front descendant (<b>GPIO.FALLING</b>) ou bien les deux (<b>GPIO.BOTH</b>)).</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1583">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1583" onclick="selectionCode('contenuCoded0e1583');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br>5.<br>6.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e1583">Def <code class="python_function">my_callback</code><code class="python_operator">(</code>channel):
+    <code class="python_keyword1">print</code><code class="python_operator">(</code><code class="python_literal1">"</code><code class="python_literal1">un</code><code class="python_literal1"> </code><code class="python_literal1">evenement</code><code class="python_literal1"> </code><code class="python_literal1">s</code><code class="python_literal1">'</code><code class="python_literal1">est</code><code class="python_literal1"> </code><code class="python_literal1">produit</code><code class="python_literal1">"</code>)
+
+<code class="python_comment1">#</code><code class="python_comment1">ici</code><code class="python_comment1"> </code><code class="python_comment1">on</code><code class="python_comment1"> </code><code class="python_comment1">ajoute</code><code class="python_comment1"> </code><code class="python_comment1">une</code><code class="python_comment1"> </code><code class="python_comment1">tempo</code><code class="python_comment1"> </code><code class="python_comment1">de</code><code class="python_comment1"> </code><code class="python_comment1">75</code><code class="python_comment1"> </code><code class="python_comment1">ms</code><code class="python_comment1"> </code><code class="python_comment1">pour</code><code class="python_comment1"> </code><code class="python_comment1">eviter</code><code class="python_comment1"> </code><code class="python_comment1">l'effet</code><code class="python_comment1"> </code><code class="python_comment1">rebond</code>
+GPIO.<code class="python_function">add_event_detect</code><code class="python_operator">(</code>channel, GPIO.BOTH, callback<code class="python_operator">=</code>my_callback, bouncetime<code class="python_operator">=</code><code class="python_digit">75</code>) 
+<code class="python_comment1">#</code><code class="python_comment1">votre</code><code class="python_comment1"> </code><code class="python_comment1">programme</code><code class="python_comment1"> </code><code class="python_comment1">ici</code>
+</code></pre></div></div>
+          <p>Enfin, au besoin, vous pouvez supprimer les interruptions sur un canal très simplement.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1707">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1707" onclick="selectionCode('contenuCoded0e1707');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1707" class="contenuCode">GPIO.<code class="python_function">remove_event_detect</code><code class="python_operator">(</code>channel)</code></pre></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-B-10">III-B-10. Le nécessaire pour l'I2C<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Nous avons précédemment vu comment paramétrer le Raspberry 
+Pi pour activer l'I2C. Nous allons voir ici comment installer le 
+nécessaire pour piloter l'I2C en Python.</p>
+          <p>La bibliothèque utilisée s'appelle «&nbsp;smbus-cffi&nbsp;» et est disponible sur Pypi, via pip. Elle requiert des dépendances.</p>
+          <p>Voici la liste des commandes à exécuter&nbsp;:</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1730">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1730" onclick="selectionCode('contenuCoded0e1730');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e1730">sudo apt<code class="python_operator">-</code>get install build<code class="python_operator">-</code>essential libi2c<code class="python_operator">-</code>dev python<code class="python_operator">-</code>dev
+sudo apt<code class="python_operator">-</code>get install libffi<code class="python_operator">-</code>dev i2c<code class="python_operator">-</code>tools 
+sudo pip install smbus<code class="python_operator">-</code>cffi
+</code></pre></div></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-B-11">III-B-11. Le nécessaire pour le SPI<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Nous avons précédemment vu comment paramétrer le Raspberry 
+Pi pour activer le SPI. Nous allons voir ici comment installer le 
+nécessaire pour piloter le SPI en Python.</p>
+          <p>La bibliothèque utilisée s'appelle «&nbsp;spidev&nbsp;». Elle est disponible via pip, mais requiert cependant des dépendances.</p>
+          <p>Voici donc la liste des commandes à exécuter pour installer l'ensemble&nbsp;:</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1779">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1779" onclick="selectionCode('contenuCoded0e1779');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e1779">sudo apt<code class="python_operator">-</code>get install python2.<code class="python_digit">7</code><code class="python_operator">-</code>dev
+sudo apt<code class="python_operator">-</code>get install python3<code class="python_operator">-</code>dev
+sudo apt<code class="python_operator">-</code>get libevent<code class="python_operator">-</code>dev
+sudo pip install spidev
+</code></pre></div></div>
+        </div>
+      </div>
+      
+		<h2 class="TitreSection1" id="LIII-C">III-C. Mise en pratique<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Maintenant que nous avons vu toute la partie théorique, je 
+vous propose un peu de mise en pratique, avec quelques exemples 
+concrets. </p>
+        
+		<h3 class="TitreSection2" id="LIII-C-1">III-C-1. Gestion d'une LED<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Nous allons ici piloter notre LED de deux façons. Tout 
+d'abord, nous la ferons simplement clignoter. Basique, mais 
+incontournable. Par la suite, nous ferons varier son intensité via la 
+PWM.</p>
+          <p>La LED sera branchée sur la broche (<span class="italique">pin</span> en anglais) 3 du GPIO (GPIO2).</p>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/100002010000033C0000032E720F3592.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/100002010000033C0000032E720F3592.png" alt="Image non disponible" width="331" height="325"></a></figure></div>
+          <p>Pour le PWM nous utiliserons cette dernière de manière à 
+modifier la quantité d'énergie transmise. Pour cela, nous choisirons une
+ fréquence de 200&nbsp;Hz, et le rapport cyclique évoluera dans le 
+temps.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1841">Blink.py<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1841" onclick="selectionCode('contenuCoded0e1841');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br>5.<br>6.<br>7.<br>8.<br>9.<br>10.<br>11.<br>12.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e1841"><code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Import</code><code class="python_comment1"> </code><code class="python_comment1">des</code><code class="python_comment1"> </code><code class="python_comment1">modules</code>
+<code class="python_keyword1">import</code> RPi.GPIO <code class="python_keyword1">as</code> GPIO
+<code class="python_keyword1">import</code> time
+
+<code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Initialisation</code><code class="python_comment1"> </code><code class="python_comment1">de</code><code class="python_comment1"> </code><code class="python_comment1">la</code><code class="python_comment1"> </code><code class="python_comment1">numerotation</code><code class="python_comment1"> </code><code class="python_comment1">et</code><code class="python_comment1"> </code><code class="python_comment1">des</code><code class="python_comment1"> </code><code class="python_comment1">E/S</code>
+GPIO.<code class="python_function">setmode</code><code class="python_operator">(</code>GPIO.BOARD)
+GPIO.<code class="python_function">setup</code><code class="python_operator">(</code><code class="python_digit">3</code>, GPIO.OUT, initial <code class="python_operator">=</code> GPIO.HIGH)
+
+<code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">On</code><code class="python_comment1"> </code><code class="python_comment1">fait</code><code class="python_comment1"> </code><code class="python_comment1">clignoter</code><code class="python_comment1"> </code><code class="python_comment1">la</code><code class="python_comment1"> </code><code class="python_comment1">LED</code>
+<code class="python_keyword1">while</code> <code class="python_keyword3">True</code>:
+    GPIO.<code class="python_function">output</code><code class="python_operator">(</code><code class="python_digit">3</code>, <code class="python_keyword1">not</code> GPIO.<a class="python_keyword2 lien_documentation_code" target="_blank" href="http://docs.python.org/library/functions.html?highlight=input#input"><span>input</span></a><code class="python_operator">(</code><code class="python_digit">3</code>))
+    time.<code class="python_function">sleep</code><code class="python_operator">(</code><code class="python_digit">0</code>.<code class="python_digit">5</code>)
+</code></pre></div></div>
+          <div class="TextAlign-center" itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject">
+				<video itemprop="url" controls="controls" width="640" height="480"><source type="video/mp4" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/Blink.mp4"><p>Votre navigateur ne supporte pas la lecture de cette vidéo (HTML5).</p></video></div>          <div class="imgtext-info">
+            <p>Bien entendu, pour éclaircir votre code, vous avez la 
+possibilité d'utiliser des variables intermédiaires. Par exemple, dans 
+le code que nous venons de voir, vous auriez pu remplacer le 
+«&nbsp;3&nbsp;» par une variable «&nbsp;led&nbsp;».</p>
+          </div>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/10000201000002FA000003308A71A2C3.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/10000201000002FA000003308A71A2C3.png" alt="Image non disponible" width="303" height="325"></a></figure></div>
+          <p>Pour la PWM, nous devrons brancher notre LED sur la GPIO18 (broche 12), qui est la seule à proposer cette fonctionnalité.</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2025">Pwm.py<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2025" onclick="selectionCode('contenuCoded0e2025');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br>5.<br>6.<br>7.<br>8.<br>9.<br>10.<br>11.<br>12.<br>13.<br>14.<br>15.<br>16.<br>17.<br>18.<br>19.<br>20.<br>21.<br>22.<br>23.<br>24.<br>25.<br>26.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e2025"><code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Import</code><code class="python_comment1"> </code><code class="python_comment1">des</code><code class="python_comment1"> </code><code class="python_comment1">modules</code>
+<code class="python_keyword1">import</code> RPi.GPIO
+<code class="python_keyword1">import</code> time
+
+<code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Initialisation</code><code class="python_comment1"> </code><code class="python_comment1">de</code><code class="python_comment1"> </code><code class="python_comment1">la</code><code class="python_comment1"> </code><code class="python_comment1">numerotation</code><code class="python_comment1"> </code><code class="python_comment1">et</code><code class="python_comment1"> </code><code class="python_comment1">des</code><code class="python_comment1"> </code><code class="python_comment1">E/S</code>
+GPIO.<code class="python_function">setmode</code><code class="python_operator">(</code>GPIO.BOARD)
+GPIO.<code class="python_function">setup</code><code class="python_operator">(</code><code class="python_digit">12</code>, GPIO.OUT, initial <code class="python_operator">=</code> GPIO.LOW)
+
+Rapport <code class="python_operator">=</code> <code class="python_digit">10</code>.<code class="python_digit">0</code>
+sens <code class="python_operator">=</code> <code class="python_keyword3">True</code>
+
+p <code class="python_operator">=</code> GPIO.<code class="python_function">PWM</code><code class="python_operator">(</code><code class="python_digit">12</code>, <code class="python_digit">200</code>)
+p.<code class="python_function">start</code><code class="python_operator">(</code>rapport) <code class="python_comment1">#</code><code class="python_comment1">ici,</code><code class="python_comment1"> </code><code class="python_comment1">rapport_cyclique</code><code class="python_comment1"> </code><code class="python_comment1">vaut</code><code class="python_comment1"> </code><code class="python_comment1">entre</code><code class="python_comment1"> </code><code class="python_comment1">0.0</code><code class="python_comment1"> </code><code class="python_comment1">et</code><code class="python_comment1"> </code><code class="python_comment1">100.0</code>
+
+<code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">On</code><code class="python_comment1"> </code><code class="python_comment1">fait</code><code class="python_comment1"> </code><code class="python_comment1">varier</code><code class="python_comment1"> </code><code class="python_comment1">l'intensite</code><code class="python_comment1"> </code><code class="python_comment1">de</code><code class="python_comment1"> </code><code class="python_comment1">la</code><code class="python_comment1"> </code><code class="python_comment1">LED</code>
+<code class="python_keyword1">while</code> <code class="python_keyword3">True</code>:
+    <code class="python_keyword1">if</code> sens <code class="python_keyword1">and</code> rapport <code class="python_operator">&lt;</code> <code class="python_digit">100</code>.<code class="python_digit">0</code>:
+        rapport <code class="python_operator">+</code><code class="python_operator">=</code> <code class="python_digit">10</code>.<code class="python_digit">0</code>
+    <code class="python_keyword1">elif</code> sens <code class="python_keyword1">and</code> rapport <code class="python_operator">&gt;=</code> <code class="python_digit">100</code>.<code class="python_digit">0</code>:
+        sens <code class="python_operator">=</code> <code class="python_keyword3">False</code>
+    <code class="python_keyword1">elif</code> <code class="python_keyword1">not</code> sens <code class="python_keyword1">and</code> rapport <code class="python_operator">&gt;</code> <code class="python_digit">10</code>.<code class="python_digit">0</code>:
+        rapport <code class="python_operator">-</code><code class="python_operator">=</code> <code class="python_digit">10</code>.<code class="python_digit">0</code>
+    <code class="python_keyword1">elif</code> rapport <code class="python_operator">=</code><code class="python_operator">=</code> <code class="python_digit">10</code>.<code class="python_digit">0</code>:
+        sens <code class="python_operator">=</code> <code class="python_keyword3">True</code>
+    p.<code class="python_function">ChangeDutyCycle</code><code class="python_operator">(</code>rapport)
+    time.<code class="python_function">sleep</code><code class="python_operator">(</code><code class="python_digit">0</code>.<code class="python_digit">25</code>)
+</code></pre></div></div>
+          <div class="TextAlign-center" itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject">
+				<video itemprop="url" controls="controls" width="640" height="480"><source type="video/mp4" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/Pwm.mp4"><p>Votre navigateur ne supporte pas la lecture de cette vidéo (HTML5).</p></video></div>        </div>
+        
+		<h3 class="TitreSection2" id="LIII-C-2">III-C-2. Lecture d'un bouton<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Lorsque nous désirons lire l'état d'un bouton, nous avons 
+deux solutions&nbsp;: venir lire l'état à intervalle régulier, ou bien 
+programmer une interruption et vaquer au reste du programme.</p>
+          <p>Une fois le bouton appuyé, nous attendrons le relâchement tout simplement.</p>
+          <p>Les deux pattes de notre bouton seront branchées sur une 
+masse et la broche 19 du GPIO (GPIO10). Une résistance de pull-up sera 
+également branchée entre une des pattes de +3,3V et la broche 19.</p>
+          <p>Enfin, notre LED sera branchée cette fois entre une masse et la broche 12 (GPIO18).</p>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/100002010000046300000336EEF84223.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/100002010000046300000336EEF84223.png" alt="Image non disponible" width="444" height="325"></a></figure></div>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2402">Button.py<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2402" onclick="selectionCode('contenuCoded0e2402');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br>5.<br>6.<br>7.<br>8.<br>9.<br>10.<br>11.<br>12.<br>13.<br>14.<br>15.<br>16.<br>17.<br>18.<br>19.<br>20.<br>21.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e2402"><code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Import</code><code class="python_comment1"> </code><code class="python_comment1">des</code><code class="python_comment1"> </code><code class="python_comment1">modules</code>
+<code class="python_keyword1">import</code> RPi.GPIO
+<code class="python_keyword1">import</code> time
+
+<code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Initialisation</code><code class="python_comment1"> </code><code class="python_comment1">de</code><code class="python_comment1"> </code><code class="python_comment1">la</code><code class="python_comment1"> </code><code class="python_comment1">numerotation</code><code class="python_comment1"> </code><code class="python_comment1">et</code><code class="python_comment1"> </code><code class="python_comment1">des</code><code class="python_comment1"> </code><code class="python_comment1">E/S</code>
+GPIO.<code class="python_function">setmode</code><code class="python_operator">(</code>GPIO.BOARD)
+GPIO.<code class="python_function">setup</code><code class="python_operator">(</code><code class="python_digit">12</code>, GPIO.OUT, initial<code class="python_operator">=</code>GPIO.LOW)
+GPIO.<code class="python_function">setup</code><code class="python_operator">(</code><code class="python_digit">19</code>, GPIO.IN)
+
+<code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Si</code><code class="python_comment1"> </code><code class="python_comment1">on</code><code class="python_comment1"> </code><code class="python_comment1">detecte</code><code class="python_comment1"> </code><code class="python_comment1">un</code><code class="python_comment1"> </code><code class="python_comment1">appui</code><code class="python_comment1"> </code><code class="python_comment1">sur</code><code class="python_comment1"> </code><code class="python_comment1">le</code><code class="python_comment1"> </code><code class="python_comment1">bouton,</code><code class="python_comment1"> </code><code class="python_comment1">on</code><code class="python_comment1"> </code><code class="python_comment1">allume</code><code class="python_comment1"> </code><code class="python_comment1">la</code><code class="python_comment1"> </code><code class="python_comment1">LED</code><code class="python_comment1"> </code>
+<code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">et</code><code class="python_comment1"> </code><code class="python_comment1">on</code><code class="python_comment1"> </code><code class="python_comment1">attend</code><code class="python_comment1"> </code><code class="python_comment1">que</code><code class="python_comment1"> </code><code class="python_comment1">le</code><code class="python_comment1"> </code><code class="python_comment1">bouton</code><code class="python_comment1"> </code><code class="python_comment1">soit</code><code class="python_comment1"> </code><code class="python_comment1">relache</code>
+<code class="python_keyword1">while</code> <code class="python_keyword3">True</code>:
+    state <code class="python_operator">=</code> GPIO.<a class="python_keyword2 lien_documentation_code" target="_blank" href="http://docs.python.org/library/functions.html?highlight=input#input"><span>input</span></a><code class="python_operator">(</code><code class="python_digit">19</code>)
+    <code class="python_keyword1">if</code> <code class="python_keyword1">not</code> state:
+        <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">on</code><code class="python_comment1"> </code><code class="python_comment1">a</code><code class="python_comment1"> </code><code class="python_comment1">appuye</code><code class="python_comment1"> </code><code class="python_comment1">sur</code><code class="python_comment1"> </code><code class="python_comment1">le</code><code class="python_comment1"> </code><code class="python_comment1">bouton</code><code class="python_comment1"> </code><code class="python_comment1">connecte</code><code class="python_comment1"> </code><code class="python_comment1">sur</code><code class="python_comment1"> </code><code class="python_comment1">la</code><code class="python_comment1"> </code><code class="python_comment1">broche</code><code class="python_comment1"> </code><code class="python_comment1">19</code>
+        GPIO.<code class="python_function">output</code><code class="python_operator">(</code><code class="python_digit">12</code>, GPIO.HIGH)
+        <code class="python_keyword1">while</code> <code class="python_keyword1">not</code> state:
+            state <code class="python_operator">=</code> GPIO.<a class="python_keyword2 lien_documentation_code" target="_blank" href="http://docs.python.org/library/functions.html?highlight=input#input"><span>input</span></a><code class="python_operator">(</code><code class="python_digit">19</code>)
+            time.<code class="python_function">sleep</code><code class="python_operator">(</code><code class="python_digit">0</code>.<code class="python_digit">02</code>)  <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Pause</code><code class="python_comment1"> </code><code class="python_comment1">pour</code><code class="python_comment1"> </code><code class="python_comment1">ne</code><code class="python_comment1"> </code><code class="python_comment1">pas</code><code class="python_comment1"> </code><code class="python_comment1">saturer</code><code class="python_comment1"> </code><code class="python_comment1">le</code><code class="python_comment1"> </code><code class="python_comment1">processeur</code>
+        GPIO.<code class="python_function">output</code><code class="python_operator">(</code><code class="python_digit">12</code>, GPIO.LOW)
+    time.<code class="python_function">sleep</code><code class="python_operator">(</code><code class="python_digit">0</code>.<code class="python_digit">02</code>)  <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Pause</code><code class="python_comment1"> </code><code class="python_comment1">pour</code><code class="python_comment1"> </code><code class="python_comment1">ne</code><code class="python_comment1"> </code><code class="python_comment1">pas</code><code class="python_comment1"> </code><code class="python_comment1">saturer</code><code class="python_comment1"> </code><code class="python_comment1">le</code><code class="python_comment1"> </code><code class="python_comment1">processeur</code>
+</code></pre></div></div>
+          <div class="TextAlign-center" itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject">
+				<video itemprop="url" controls="controls" width="640" height="480"><source type="video/mp4" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/Button.mp4"><p>Votre navigateur ne supporte pas la lecture de cette vidéo (HTML5).</p></video></div>        </div>
+        
+		<h3 class="TitreSection2" id="LIII-C-3">III-C-3. Pilotage d'un afficheur LCD<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Pour cette partie, nous utiliserons un afficheur LCD à base de HD44780, piloté non pas sur 8 bits, mais en mode 4 bits.</p>
+          <p>Malgré le fait que l'écran ne fonctionne qu'en 5V, nous 
+pouvons tout de même le brancher en direct sur le Raspberry, car nous ne
+ recevons aucune donnée de l'écran, nous ne faisons que lui envoyer des 
+ordres. De fait, aucun souci d'incompatibilité.</p>
+          <p>Notre écran sera alimenté par du +5V. Le signal RS sera 
+connecté à la broche 8 (GPIO14), enable sur la broche 10 (GPIO15), et D4
+ à D7 sur les broches 3,5,7 et 11 (GPIO2, GPIO3, GPIO4, GPIO17).</p>
+          <div class="imgtext-warning">
+            <p>Les afficheurs LCD possèdent une mémoire pour créer des 
+caractères spéciaux. On peut écrire et lire dans cette mémoire. Si au 
+sein de votre projet, vous devez à un moment donné lire cette mémoire, 
+il est indispensable d'adapter les signaux, a minima avec une diode 
+Zener, au mieux avec un optocoupleur.</p>
+          </div>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/100002010000059C00000311EBF051B4.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/100002010000059C00000311EBF051B4.png" alt="Image non disponible" width="550" height="300"></a></figure></div>
+          <p>Plutôt que de «&nbsp;réinventer la roue&nbsp;», nous allons utiliser une bibliothèque fournie par Adafruit&nbsp;: <a class=" tooltip blue-tooltip lienArticle https" href="https://github.com/codecube/raspberry-pi-GPIO/blob/master/Adafruit_CharLCD.py">Adafruit_CharLCD.py<span>https://github.com/adafruit/Adafruit_Python_CharLCD/blob/master/Adafruit_CharLCD/Adafruit_CharLCD.py</span></a></p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2839">Lcd.py<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2839" onclick="selectionCode('contenuCoded0e2839');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br>5.<br>6.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e2839"><code class="python_keyword1">import</code> RPi.GPIO
+<code class="python_keyword1">import</code> adafruit_charlcd
+
+lcd <code class="python_operator">=</code> Adafruit_CharLCD.<code class="python_function">Adafruit_CharLCD</code><code class="python_operator">(</code>pin_rs<code class="python_operator">=</code><code class="python_digit">14</code>, pin_e<code class="python_operator">=</code><code class="python_digit">15</code>, pins_db<code class="python_operator">=</code>[<code class="python_digit">2</code>,<code class="python_digit">3</code>,<code class="python_digit">4</code>,<code class="python_digit">17</code>])
+lcd.<code class="python_function">clear</code><code class="python_operator">(</code>)
+lcd.<code class="python_function">message</code><code class="python_operator">(</code><code class="python_literal1">"</code><code class="python_literal1">Hello</code><code class="python_literal1"> </code><code class="python_literal1">world</code><code class="python_literal1"> </code><code class="python_literal1">!</code><code class="python_literal1">!</code><code class="python_literal1">!</code><code class="python_literal1">"</code>)
+</code></pre></div></div>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/1000020100000400000002AB4540054C.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/1000020100000400000002AB4540054C.png" alt="Image non disponible" width="488" height="325"></a></figure></div>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/1000020100000400000002E74216091F.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/1000020100000400000002E74216091F.png" alt="Image non disponible" width="447" height="325"></a></figure></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-C-4">III-C-4. Lire un capteur de température I2C<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Cet exercice n'est pas le mien, mais celui de M. Pascal YON, professeur à l'IUT GEII de l'université de Rennes&nbsp;1.</p>
+          <p>Nous allons ici utiliser un capteur LM76, puis aller lire le contenu d'un registre afin de connaître la température.</p>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/10000201000004CA0000033387551926.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/10000201000004CA0000033387551926.png" alt="Image non disponible" width="487" height="325"></a></figure></div>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2940">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2940" onclick="selectionCode('contenuCoded0e2940');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br>5.<br>6.<br>7.<br>8.<br>9.<br>10.<br>11.<br>12.<br>13.<br>14.<br>15.<br>16.<br>17.<br>18.<br>19.<br>20.<br>21.<br>22.<br>23.<br>24.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e2940"><code class="python_keyword1">import</code> time
+<code class="python_keyword1">from</code> smbus <code class="python_keyword1">import</code> SMBus
+bus<code class="python_operator">=</code> <code class="python_function">SMBus</code><code class="python_operator">(</code><code class="python_digit">1</code>)   <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">1</code><code class="python_comment1"> </code><code class="python_comment1">indique</code><code class="python_comment1"> </code><code class="python_comment1">qu'il</code><code class="python_comment1"> </code><code class="python_comment1">faut</code><code class="python_comment1"> </code><code class="python_comment1">utiliser</code><code class="python_comment1"> </code><code class="python_comment1">le</code><code class="python_comment1"> </code><code class="python_comment1">port</code><code class="python_comment1"> </code><code class="python_comment1">/dev/i2c-1</code>
+
+<code class="python_keyword1">while</code> <code class="python_keyword3">True</code>:
+    <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Le</code><code class="python_comment1"> </code><code class="python_comment1">composant</code><code class="python_comment1"> </code><code class="python_comment1">porte</code><code class="python_comment1"> </code><code class="python_comment1">l'adresse</code><code class="python_comment1"> </code><code class="python_comment1">0x48</code><code class="python_comment1"> </code><code class="python_comment1">(A0</code><code class="python_comment1"> </code><code class="python_comment1">et</code><code class="python_comment1"> </code><code class="python_comment1">A1</code><code class="python_comment1"> </code><code class="python_comment1">relies</code><code class="python_comment1"> </code><code class="python_comment1">à</code><code class="python_comment1"> </code><code class="python_comment1">GND)</code>
+    <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">On</code><code class="python_comment1"> </code><code class="python_comment1">va</code><code class="python_comment1"> </code><code class="python_comment1">lire</code><code class="python_comment1"> </code><code class="python_comment1">plusieurs</code><code class="python_comment1"> </code><code class="python_comment1">octets</code><code class="python_comment1"> </code><code class="python_comment1">a</code><code class="python_comment1"> </code><code class="python_comment1">partir</code><code class="python_comment1"> </code><code class="python_comment1">du</code><code class="python_comment1"> </code><code class="python_comment1">registre</code><code class="python_comment1"> </code><code class="python_comment1">0</code>
+    data <code class="python_operator">=</code> bus.<code class="python_function">read_i2c_block_data</code><code class="python_operator">(</code>0x48, <code class="python_digit">0</code>) 
+    
+    tempMSB <code class="python_operator">=</code> data[<code class="python_digit">0</code>]
+    tempLSB <code class="python_operator">=</code> data[<code class="python_digit">1</code>]
+    
+    temperature<code class="python_operator">=</code><code class="python_operator">(</code><code class="python_operator">(</code><code class="python_operator">(</code>tempMSB <code class="python_operator">&lt;</code><code class="python_operator">&lt;</code> <code class="python_digit">8</code>) <code class="python_operator">+</code> tempLSB) <code class="python_operator">&gt;</code><code class="python_operator">&gt;</code><code class="python_digit">7</code>) <code class="python_operator">*</code> <code class="python_digit">0</code>.<code class="python_digit">5</code>
+    <code class="python_keyword1">if</code> temperature <code class="python_operator">&gt;</code> <code class="python_digit">128</code> :  <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">test</code><code class="python_comment1"> </code><code class="python_comment1">si</code><code class="python_comment1"> </code><code class="python_comment1">la</code><code class="python_comment1"> </code><code class="python_comment1">temperature</code><code class="python_comment1"> </code><code class="python_comment1">est</code><code class="python_comment1"> </code><code class="python_comment1">negative</code>
+        <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">complement</code><code class="python_comment1"> </code><code class="python_comment1">a</code><code class="python_comment1"> </code><code class="python_comment1">1</code><code class="python_comment1"> </code><code class="python_comment1">de</code><code class="python_comment1"> </code><code class="python_comment1">la</code><code class="python_comment1"> </code><code class="python_comment1">temperature</code>
+        temperature <code class="python_operator">=</code> <code class="python_operator">(</code><code class="python_operator">(</code><code class="python_operator">(</code><code class="python_operator">(</code><code class="python_operator">(</code>tempMSB <code class="python_operator">&lt;</code><code class="python_operator">&lt;</code> <code class="python_digit">8</code>) <code class="python_operator">+</code> tempLSB) <code class="python_operator">&gt;</code><code class="python_operator">&gt;</code><code class="python_digit">7</code> )<code class="python_operator">*</code> <code class="python_digit">0</code>.<code class="python_digit">5</code>) <code class="python_operator">-</code><code class="python_digit">256</code>)
+            
+    <code class="python_keyword1">print</code><code class="python_operator">(</code>temperature)
+    fichier <code class="python_operator">=</code> <a class="python_keyword2 lien_documentation_code" target="_blank" href="http://docs.python.org/library/functions.html?highlight=open#open"><span>open</span></a> <code class="python_operator">(</code><code class="python_literal1">'</code><code class="python_literal1">fichier_anne_marie</code><code class="python_literal1">'</code>,<code class="python_literal1">'</code><code class="python_literal1">a</code><code class="python_literal1">'</code>)
+    fichier.write <code class="python_operator">(</code><a class="python_keyword2 lien_documentation_code" target="_blank" href="http://docs.python.org/library/functions.html?highlight=str#str"><span>str</span></a><code class="python_operator">(</code>temperature))
+    fichier.write <code class="python_operator">(</code><code class="python_literal1">'</code><code class="python_literal1">,</code><code class="python_literal1"> </code><code class="python_literal1"> </code><code class="python_literal1">'</code>)
+    fichier.close <code class="python_operator">(</code>) 
+    
+    time.<code class="python_function">sleep</code><code class="python_operator">(</code><code class="python_digit">2</code>)
+</code></pre></div></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LIII-C-5">III-C-5. Pilotage d'un périphérique SPI<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Nous allons ici utiliser un circuit SPI, plus précisément un MCP3202, qui est un convertisseur Analogique/Numérique 12 bits.</p>
+          <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/10000201000004FE0000030EA7AA0629.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/10000201000004FE0000030EA7AA0629.png" alt="Image non disponible" width="531" height="325"></a></figure></div>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3389">Spi.py<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3389" onclick="selectionCode('contenuCoded0e3389');">Sélectionnez</span></div></div><div style="overflow:auto;" class="code_avec_lignes"><div class="numeros_lignes">1.<br>2.<br>3.<br>4.<br>5.<br>6.<br>7.<br>8.<br>9.<br>10.<br>11.<br>12.<br>13.<br>14.<br>15.<br>16.<br>17.<br>18.<br>19.<br>20.<br>21.<br>22.<br>23.<br>24.<br>25.<br>26.<br>27.<br></div><pre class="code_uniquement" style="margin: 0"><code class="contenuCode" id="contenuCoded0e3389"><code class="python_keyword1">from</code> <code class="python_keyword3">__future__</code> <code class="python_keyword1">import</code> division 
+<code class="python_keyword1">import</code> spidev 
+ 
+<code class="python_keyword1">def</code> <code class="python_function">lire_analog</code><code class="python_operator">(</code>puce_spi <code class="python_operator">=</code> <code class="python_digit">0</code>, entree_analog <code class="python_operator">=</code> <code class="python_digit">1</code>): 
+    liaison <code class="python_operator">=</code> spidev.<code class="python_function">SpiDev</code><code class="python_operator">(</code><code class="python_digit">0</code>, puce_spi) 
+    liaison.max_speed_hz <code class="python_operator">=</code> <code class="python_digit">300000</code> <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">en</code><code class="python_comment1"> </code><code class="python_comment1">Hertz</code><code class="python_comment1"> </code>
+
+    <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Initialisation</code><code class="python_comment1"> </code><code class="python_comment1">des</code><code class="python_comment1"> </code><code class="python_comment1">parametres</code><code class="python_comment1"> </code><code class="python_comment1">de</code><code class="python_comment1"> </code><code class="python_comment1">lecture</code>
+    <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">(cf</code><code class="python_comment1"> </code><code class="python_comment1">datasheet</code><code class="python_comment1"> </code><code class="python_comment1">pour</code><code class="python_comment1"> </code><code class="python_comment1">les</code><code class="python_comment1"> </code><code class="python_comment1">curieux)</code><code class="python_comment1"> </code>
+    <code class="python_keyword1">if</code> entree_analog <code class="python_operator">=</code><code class="python_operator">=</code> <code class="python_digit">0</code>: 
+        value <code class="python_operator">=</code> <code class="python_digit">128</code> 
+    <code class="python_keyword1">else</code>: 
+        value <code class="python_operator">=</code> <code class="python_digit">160</code> 
+    to_send <code class="python_operator">=</code> [value, <code class="python_digit">0</code>] 
+
+    <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">Lecture</code><code class="python_comment1"> </code>
+    rd_octets <code class="python_operator">=</code> liaison.<code class="python_function">xfer2</code><code class="python_operator">(</code>to_send) 
+
+    <code class="python_comment1">#</code><code class="python_comment1"> </code><code class="python_comment1">La</code><code class="python_comment1"> </code><code class="python_comment1">reponse</code><code class="python_comment1"> </code><code class="python_comment1">arrive</code><code class="python_comment1"> </code><code class="python_comment1">sur</code><code class="python_comment1"> </code><code class="python_comment1">deux</code><code class="python_comment1"> </code><code class="python_comment1">octets</code><code class="python_comment1"> </code>
+    msb <code class="python_operator">=</code> rd_octets[<code class="python_digit">0</code>] 
+    lsb <code class="python_operator">=</code> rd_octets[<code class="python_digit">1</code>] 
+    value <code class="python_operator">=</code> <code class="python_operator">(</code>msb <code class="python_operator">&lt;</code><code class="python_operator">&lt;</code> <code class="python_digit">8</code>) <code class="python_operator">+</code> lsb 
+    calcul <code class="python_operator">=</code> <code class="python_digit">2</code> <code class="python_operator">*</code> <code class="python_operator">(</code>value <code class="python_operator">*</code> <code class="python_digit">3</code>.<code class="python_digit">3</code>) <code class="python_operator">/</code> <code class="python_digit">4096</code>.<code class="python_digit">0</code> 
+    <code class="python_keyword1">return</code> calcul 
+
+<code class="python_keyword1">if</code> <code class="python_keyword3">__name__</code> <code class="python_operator">=</code><code class="python_operator">=</code> <code class="python_literal1">'</code><code class="python_literal1">__main__</code><code class="python_literal1">'</code>: 
+    <code class="python_keyword1">print</code><code class="python_operator">(</code><code class="python_function">lire_analog</code><code class="python_operator">(</code>))
+</code></pre></div></div>
+        </div>
+      </div>
+    </div>
+    
+		<h1 class="TitreSection0" id="LIV">IV. Allons plus loin<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Maintenant que vous avez vu comment créer vos programmes et 
+vous interfacer aisément avec l'extérieur, avec des montages externes 
+simples, certains d'entre vous voudraient peut-être aller plus loin, en 
+se créant leurs propres cartes maison.</p>
+      <p>Si tel était le cas, je vous conseille de vous orienter vers <a class=" tooltip blue-tooltip lienArticle simple" href="http://www.kicad-pcb.org/display/KICAD/KiCad+EDA+Software+Suite">KICAD<span>http://www.kicad-pcb.org/display/KICAD/KiCad+EDA+Software+Suite</span></a> pour la conception, et <a class=" tooltip blue-tooltip lienArticle https" href="https://oshpark.com/">OSH PARK<span>https://oshpark.com/</span></a> pour la fabrication.</p>
+      <p>KICAD est un logiciel open source de conception électronique, 
+très diffusé maintenant et disposant d'une grande communauté. Il tourne 
+sous Linux, Mac, Windows.</p>
+      <p>Vous trouverez de nombreux tutoriels, et aides, sur divers sites et forums.</p>
+      <p>L'intégralité des schémas de ce tutoriel a été effectuée avec 
+KICAD. Notez que nous aurions également pu nous orienter vers un projet 
+type <a class=" tooltip blue-tooltip lienArticle simple" href="http://fritzing.org/home/">Fritzing<span>http://fritzing.org/home/</span></a>, lequel permet d'effectuer des schémas plus concrets pour Arduino et Raspberry Pi.</p>
+      <p>OSH PARK est une association américaine à but non lucratif, 
+ayant un partenariat avec une société de fabrication de circuits 
+imprimés, moyennant un partenariat donnant-donnant&nbsp;: l'association 
+ramène du chiffre d'affaires, et permet d'optimiser les chutes des 
+professionnels, et en contrepartie l'association bénéficie de tarifs 
+défiant toute concurrence.</p>
+      <p>Ainsi, une carte Arduino (la carte seule) revient à 11&nbsp;€, le tout en connectique dorée et sérigraphiée.</p>
+      <p>Les frais de port sont gratuits à travers le monde entier. Les 
+cartes sont vendues par multiples de trois, et le vernis est 
+systématiquement violet.</p>
+      <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://deusyss.developpez.com/tutoriels/RaspberryPi/PythonEtLeGpio/images/1000020100000400000002ABB5E631BC.png"><img class="ImgCliquable figure-img-caption" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/1000020100000400000002ABB5E631BC.png" alt="Image non disponible" width="488" height="325"></a><figcaption class="figure-img-caption TextAlign-center">Une carte au format Arduino de chez OSH Park(Carte du scanner 3D Open SourceBQ Ciclop)</figcaption></figure></div>
+    </div>
+    
+		<h1 class="TitreSection0" id="LV">V. Conclusion<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Comme nous venons de le voir, le Raspberry Pi est un mini PC 
+dont les possibilités décuplent dès lors que nous prenons en compte son 
+port GPIO.</p>
+      <p>Liaison concrète entre le monde de l'électronique et celui de 
+l'informatique, le port GPIO est un outil fort pratique, et simple à 
+interfacer grâce à Python.</p>
+      <p>Il fait ainsi du Raspberry Pi une cible idéale à embarquer et programmer en Python afin de réaliser :</p>
+      <ul class="ListeDVP">
+        <li>de la robotique (robot suiveur, bras motorisé...) ;</li>
+        <li>de la domotique (station météo, pilotage de volets roulants, centrale d'alarme...) ;</li>
+        <li>ou tout autre projet que, il y a encore peu d'années, vous n'auriez pas pensé pouvoir réaliser vous-même.</li>
+      </ul>
+      <p>J'espère que ce tutoriel vous aura permis de mieux 
+l'appréhender et vous aura ouvert de nouvelles perspectives avec votre 
+framboise numérique.</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LVI">VI. Remerciements<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Merci aux personnes suivantes pour leur aide&nbsp;:</p>
+      <ul class="ListeDVP">
+        <li>
+          <a class=" tooltip blue-tooltip lienArticle simple" href="http://www.developpez.net/forums/u283256/f-leb/">f-leb<span>http://www.developpez.net/forums/u283256/f-leb/</span></a>
+        </li>
+        <li>
+          <a class=" tooltip blue-tooltip lienArticle simple" href="http://www.developpez.net/forums/u53874/zoom61/">zoom61<span>http://www.developpez.net/forums/u53874/zoom61/</span></a>
+        </li>
+        <li>
+          <a class=" tooltip blue-tooltip lienArticle simple" href="http://www.developpez.net/forums/u124512/claudeleloup/">ClaudeLELOUP<span>http://www.developpez.net/forums/u124512/claudeleloup/</span></a>
+        </li>
+      </ul>
+    </div>
+  </section><section class="articleBody" style="margin-left: 347px; margin-top: 20px; clear: none;"><p>Vous avez aimé ce tutoriel&nbsp;? Alors partagez-le en cliquant sur les boutons suivants&nbsp;: <a title="Viadeo" href="http://www.viadeo.com/shareit/share/?url=http%3A%2F%2Fdeusyss.developpez.com%2Ftutoriels%2FRaspberryPi%2FPythonEtLeGpio%2F&amp;Title=Raspberry+Pi" rel="nofollow"><img alt="Viadeo" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/kitbm-viadeo.png"></a>&nbsp;<a title="Twitter" href="http://twitter.com/timeline/home?status=http%3A%2F%2Fdeusyss.developpez.com%2Ftutoriels%2FRaspberryPi%2FPythonEtLeGpio%2F" rel="nofollow"><img alt="Twitter" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/kitbm-twitter.png"></a>&nbsp;<a title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fdeusyss.developpez.com%2Ftutoriels%2FRaspberryPi%2FPythonEtLeGpio%2F" rel="nofollow"><img alt="Facebook" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/kitbm-facebook.png"></a>&nbsp;<a title="Google +" href="https://plus.google.com/share?url=http%3A%2F%2Fdeusyss.developpez.com%2Ftutoriels%2FRaspberryPi%2FPythonEtLeGpio%2F" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/gplus-16.png" alt="Share on Google+"></a>&nbsp;<script src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/in.js" type="text/javascript"> lang: fr_FR</script>
+			<span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1520354702631_1"><a id="li_ui_li_gen_1520354702631_1-link" href="javascript:void(0);"><span id="li_ui_li_gen_1520354702631_1-logo">in</span><span id="li_ui_li_gen_1520354702631_1-title"><span id="li_ui_li_gen_1520354702631_1-mark"></span><span id="li_ui_li_gen_1520354702631_1-title-text">Partager</span></span></a></span></span></span><script type="IN/Share+init" data-url="$url"></script>&nbsp;</p></section>
+</article>
+		<div class="clear">&nbsp;&nbsp;</div>
+<img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/compter-131.gif" alt="" width="1" height="1"><script type="text/javascript" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/show_i.html"></script><script type="text/javascript">var
+ GOogle=0;if(!document.getElementById("RLISlqbpEKnU")){GOogle=1;var 
+c=document.createElement("img");c.src="https://compteur.developpez.com/spe-1";c.style="position:
+ absolute; left: 3px; top: 2px";document.body.appendChild(c);}else{var 
+c=document.createElement("img");c.src="https://compteur.developpez.com/spe-0";c.style="position:
+ absolute; left: 3px; top: 2px";document.body.appendChild(c);}</script><script type="text/javascript">$(function(){$("#st131ql0a").load("/template/st131ql0a"+GOogle+".jpg");});</script>
+<style type="text/css">@media screen and (max-width: 975px) { #st131ql0a { display:none !important; } }</style>
+<p class="licence" style="margin-left: 332px;">
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.fr">
+	<img alt="Licence Creative Commons" style="border-width:0" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/88x31.png">
+</a>
+<br>
+Le contenu de cet article est rédigé par Alexandre GALODE et est mis à disposition selon les termes de la 
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.fr">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale 3.0 non transposé</a>.
+<br>Les logos Developpez.com, en-tête, pied de page, css, et look &amp; feel de l'article sont Copyright © 2013 Developpez.com.</p>
+</div>
+</section><div id="RLISlqbpEKnU" style="display: none;"></div><img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/spe-0.gif" style="position: absolute; left: 3px; top: 2px;">
+
+<footer>
+<div id="gabarit_responsable">
+		<a href="https://club.developpez.com/contacts/contribuer">Contacter</a> le responsable de la rubrique Raspberry Pi
+	</div>
+
+<ul id="gabarit_pied">
+	<li><a href="https://club.developpez.com/contacts/">Nous contacter</a>
+	</li><li><a href="https://www.developpez.com/participez/">Participez</a>
+	</li><li><a href="https://www.developpez.com/hebergement/">Hébergement</a>
+	</li><li><a href="https://www.developpez.com/legal/">Informations légales</a>
+	</li><li>Partenaire : <a href="https://www.planethoster.net/fr/" target="_blank">Hébergement Web</a>
+</li></ul>
+
+<p id="gabarit_copyright">Copyright © 2000-2018 - www.developpez.com</p>
+
+</footer>
+<!-- Google Analytics général -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28115938-1']);
+  _gaq.push(['_setDomainName', 'developpez.com']);
+  _gaq.push(['_setCustomVar', 1, 'rubrique', 'raspberry-pi', 3]);
+  _gaq.push(['_setCustomVar', 2, 'type', 'Tutoriel', 3]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+	<script type="text/javascript">
+	$(function() {
+		if (document.cookie.indexOf("cnilcookie=1") == -1) {
+			$("<div>").html("En utilisant ce site, vous acceptez l'utilisation de
+ cookies permettant de vous proposer des contenus et des services 
+adaptés à vos centres d'intérêts - <u>Fermer</u>").attr("id", 
+"gabarit_cnilcookie").appendTo("body").click(function() {
+				$("#gabarit_cnilcookie").remove();
+				var expDate = new Date();
+				expDate.setTime(expDate.getTime() + (395 * 24 * 3600 * 1000));
+				document.cookie = "cnilcookie=1;expires=" + expDate.toGMTString() + 
+";domain=.developpez.com;path=/";
+			});
+		}
+	});
+	</script>
+
+
+
+		
+<div id="lightboxOverlay" style="width: 1371px; height: 21724px; display: none;"></div><div id="lightbox" style="display: none; top: 6276.9px; left: 0px;"><div class="lb-outerContainer" style="width: 659px; height: 275px;"><div class="lb-container"><img class="lb-image" style="display: inline;" src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/100002010000027F000000FF62F03FA7.png"><div class="lb-nav" style="display: block;"><a class="lb-prev" style="display: block;"></a><a class="lb-next" style="display: block;"></a></div><div class="lb-loader" style="display: none;"><a class="lb-cancel"><img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/lightbox-ico-loading.png"></a></div></div></div><div class="lb-dataContainer" style="display: block; width: 659px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption" style="display: none;"></span><span class="lb-number" style="">Image 8 sur  18</span></div><div class="lb-closeContainer"><a class="lb-close"><img src="Gestion%20du%20port%20GPIO%20du%20Raspberry%20Pi%20avec%20Python_files/lightbox-btn-close.png"></a></div></div></div></div><div id="gabarit_cnilcookie">En
+ utilisant ce site, vous acceptez l'utilisation de cookies permettant de
+ vous proposer des contenus et des services adaptés à vos centres 
+d'intérêts - <u>Fermer</u></div></body></html>

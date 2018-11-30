@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<title>Python-exemplary</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<link href="Python-exemplary_files/gp_print.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="window.print()">
+    
+    <!--light-->
+<style type="text/css">
+<!--
+.Stil1 {color: #FF0000}
+-->
+</style>
+
+<h2>LIGHT AND INFRARED SENSORS</h2>
+<p><img src="Python-exemplary_files/rot.png" width="700" height="4"></p>
+<em>The source code of all examples  can be downloaded from <a href="http://www.python-exemplary.com/pythonex/download/rpi-tutorial.zip">here</a>.</em><br>
+<br>
+<table width="700" cellspacing="0" cellpadding="0" border="0">
+  <tbody><tr>
+    <td width="70">&nbsp;</td>
+    <td>
+      <p>Photodetectors measure the   intensity of electromagnetic 
+radiation. If they are sensitive in the   spectrum of visual light 
+(wavelength between 300 nm and 700 nm), they   are also called light 
+sensors. If they are responsive in the infrared   region (wavelength 
+between 700 nm and 1 mm) they are called infrared   sensors (IR sensor).
+ At room temperature objects emit thermal radiation   in the  8 to 35 um
+ band.</p>
+    </td>
+  </tr>
+</tbody></table>
+<p>&nbsp;</p>
+<table width="700" cellspacing="0" cellpadding="0" border="0">
+  <tbody><tr>
+    <td width="40">&nbsp;</td>
+    <td width="30"><h3><img src="Python-exemplary_files/green.png" width="20" height="17"></h3></td>
+  <td><h3><strong>Light Sensors</strong></h3>  
+  </td></tr>
+</tbody></table>   
+<table width="700" cellspacing="0" cellpadding="0" border="0">
+  <tbody><tr>
+    <td width="70">&nbsp;</td>
+    <td>
+      <p>Light   sensors are used to measure the intensity of visual light (also called <em>luminosity</em>).
+  Most light sensors consist of a photoconductive cell whose resistance 
+depends on the luminosity (Light Dependent Resistor = LDR, also called 
+photoresistor). The cell is made of a high resistance semiconductor. 
+Incident photons are absorbed by electrons that jump from the valence  
+to the conduction band and so increase the conductibility (or reduce the
+ resistance R) of the cell.  Within a reasonable range of the luminosity
+ L, the characteristics can be expressed as</p>
+      <table width="100%" border="0">
+        <tbody><tr>
+          <td width="7%" height="71">&nbsp;</td>
+          <td width="19%">R = R<sub>o</sub> * L<sup>-b</sup></td>
+          <td width="74%">where R<sub>o</sub> is the  resistance without light and b a  material constant.</td>
+        </tr>
+      </tbody></table>
+      <p>This dependency  corresponds to a line in a double logarithmic plot:</p>
+      <p><img src="Python-exemplary_files/ls7.png" alt="ls7" width="297" height="182"></p>
+      <p>Photocells are   widely used in photo cameras to select the 
+right diaphragm and shutter   speed. Here the analog value is of 
+importance. In a  light barrier application, only two states are 
+considered: Bright or Dark. The crossover value between the two states 
+is also called trigger level, because the state change normally triggers
+ ("fires") some action.</p>
+      <p></p>
+      <p><em>Aim: </em> <br>
+Use the photocell in a light barrier application with a user selectable trigger level.</p>
+      <p><em>Circuitry:</em><br>
+      The LDR is one of the resistors in a potentiometer circuit (two 
+resistors in series) with a fixed supply voltage (3.3V) . The output 
+voltage is fed into a ADC and converted to a digital signal. You can 
+create (and then even sell) your own "Digital Photocell" by soldering 
+the LDR with a 1 kOhm resistor and a MCP3021 ADC on a SMT-to-DIL 
+adapter. (If you don't have the necessary equipment, use an ADC you have
+ at hand.)</p>
+      <table width="100%" border="0">
+        <tbody><tr>
+          <td><img src="Python-exemplary_files/ls8.png" alt="ls8" width="310" height="239"></td>
+          <td>
+            <div align="center"><img src="Python-exemplary_files/ls9.png" alt="ls9" width="112" height="198"></div>
+          </td>
+        </tr>
+      </tbody></table>
+      <p><em>Program:</em><a href="http://www.python-exemplary.com/raspi/rprogs/LightSensor1.py">[&#9658;]</a></p>
+      <div id="LightSensor1"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.8em .8em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># LightSensor.py</span>
+<span style="color: #888888"># Light barrier with LDR sensor</span>
+
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">smbus</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">time</span>
+
+TRIGGER_LEVEL <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">300</span> <span style="color: #888888"># user selectable</span>
+
+<span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">readData</span>(port <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>):
+    <span style="color: #008800; font-weight: bold">if</span> port <span style="color: #333333">==</span> <span style="color: #0000DD; font-weight: bold">0</span>:
+        adc_address <span style="color: #333333">=</span> <span style="color: #005588; font-weight: bold">0x48</span>
+    <span style="color: #008800; font-weight: bold">elif</span> port <span style="color: #333333">==</span> <span style="color: #0000DD; font-weight: bold">1</span>:    
+        adc_address <span style="color: #333333">=</span> <span style="color: #005588; font-weight: bold">0x4D</span>
+    rd <span style="color: #333333">=</span> bus<span style="color: #333333">.</span>read_word_data(adc_address, <span style="color: #0000DD; font-weight: bold">0</span>)
+    data <span style="color: #333333">=</span> ((rd <span style="color: #333333">&amp;</span> <span style="color: #005588; font-weight: bold">0xFF</span>) <span style="color: #333333">&lt;&lt;</span> <span style="color: #0000DD; font-weight: bold">8</span>) <span style="color: #333333">|</span> ((rd <span style="color: #333333">&amp;</span> <span style="color: #005588; font-weight: bold">0xFF00</span>) <span style="color: #333333">&gt;&gt;</span> <span style="color: #0000DD; font-weight: bold">8</span>)
+    data <span style="color: #333333">=</span> data <span style="color: #333333">&gt;&gt;</span> <span style="color: #0000DD; font-weight: bold">2</span>
+    <span style="color: #008800; font-weight: bold">return</span> data
+
+<span style="color: #008800; font-weight: bold">print</span> <span style="background-color: #fff0f0">"starting..."</span>
+bus <span style="color: #333333">=</span> smbus<span style="color: #333333">.</span>SMBus(<span style="color: #0000DD; font-weight: bold">1</span>) 
+
+state <span style="color: #333333">=</span> <span style="background-color: #fff0f0">"DARK"</span>
+<span style="color: #008800; font-weight: bold">while</span> <span style="color: #007020">True</span>:
+    v <span style="color: #333333">=</span> readData(<span style="color: #0000DD; font-weight: bold">1</span>)  <span style="color: #888888"># adapt to your ADC (0 or 1)</span>
+    <span style="color: #008800; font-weight: bold">if</span> v <span style="color: #333333">&gt;=</span> TRIGGER_LEVEL <span style="color: #000000; font-weight: bold">and</span> state <span style="color: #333333">==</span> <span style="background-color: #fff0f0">"DARK"</span>:
+       state <span style="color: #333333">=</span> <span style="background-color: #fff0f0">"BRIGHT"</span>
+       <span style="color: #008800; font-weight: bold">print</span> <span style="background-color: #fff0f0">"BRIGHT event"</span>
+    <span style="color: #008800; font-weight: bold">if</span> v <span style="color: #333333">&lt;</span> TRIGGER_LEVEL <span style="color: #000000; font-weight: bold">and</span> state <span style="color: #333333">==</span> <span style="background-color: #fff0f0">"BRIGHT"</span>:
+       state <span style="color: #333333">=</span> <span style="background-color: #fff0f0">"DARK"</span>
+       <span style="color: #008800; font-weight: bold">print</span> <span style="background-color: #fff0f0">"DARK event"</span>
+</pre></div>
+      </div>
+      <a href="javascript:selectText('LightSensor1')"><strong>Highlight program code</strong></a>
+          <spam class="tabklein">(Ctrl+C copy, Ctrl+V paste)</spam>
+     
+      <p><em>Remarks:</em> <br>
+In the main loop you poll the ADC rapidly to detect if the returned 
+value is below or above the trigger level. You must use a "state 
+variable" <em>state,</em> because you only want to report the crossover of the trigger level. Instead of a string, you could also use a boolean variable <em>isBright</em> (or <em>isDark)</em>.</p>
+    </td></tr>
+</tbody></table>
+<p>&nbsp;</p>
+<table width="700" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+        <td width="40">&nbsp;</td>
+        <td width="30">
+            <h3><img src="Python-exemplary_files/green.png" width="20" height="17"></h3>
+        </td>
+        <td>
+            <h3><strong>Hardware Threshold Detection</strong></h3>
+        </td>
+    </tr>
+</tbody></table>
+<table width="700" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+        <td width="70">&nbsp;</td>
+        <td>
+            <p>The cross-over of a trigger level can be detected by a 
+simple electronic circuit called a Schmitt-trigger. The output is a  LOW
+ or HIGH signal and may be directly fed into a standard GPIO port 
+without any ADC conversion. This simplifies the program considerably and
+ requires much less processing power, especially in a robot application 
+where more than one IR or LDR based  proximity detectors are needed.</p>
+            <p>A classical circuit uses an operational amplifier 
+(OpAmp). Because the output voltage is proportional (with a high gain 
+factor) to the difference of the input voltages at the non-inverting and
+ inverting inputs, but limited to the supply voltage, the output voltage
+ is rapidly changing  when the input voltage difference crosses zero. So
+ when the OpAmp is driven by a single voltage supply VCC the output is  
+at digital level LOW or HIGH. A potentiometer is used to set the 
+luminosity where the cross-over takes place. A simple white LED may be 
+used as light source for the reflecting light.</p>
+            <table width="100%" border="0">
+                <tbody><tr>
+                    <td width="56%"><img src="Python-exemplary_files/ls10.png" alt="ls10" width="316" height="238"></td>
+                    <td width="44%">A op-amp based Schmitt-trigger with adjustable cross-over</td>
+                </tr>
+            </tbody></table>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </td>
+    </tr>
+</tbody></table>
+<p></p>
+<p>&nbsp;</p>
+<table width="700" cellspacing="0" cellpadding="0" border="0">
+  <tbody><tr>
+    <td width="40">&nbsp;</td>
+    <td width="30"><h3><img src="Python-exemplary_files/green.png" alt="" width="20" height="17"></h3></td>
+    <td><h3><strong>Infrared Sensors / Distance (Proximity) Sensors</strong></h3></td>
+  </tr>
+</tbody></table>
+<table width="700" cellspacing="0" cellpadding="0" border="0">
+  <tbody><tr>
+    <td width="70">&nbsp;</td>
+    <td>
+      <p>Infrared sensors are also used   for light barriers, where a 
+infrared source emits light not visible to   the human eye. This may 
+present some advantages over devices where the   light beam is visible. 
+Because many materials reflects infrared waves, a   reflective light 
+barrier are widely use in all kind of distance   detectors. For short 
+distances (1 - 100 cm) the light source is a   photodiode (IR LED) that 
+emits IR light around 1000 nm and a photodiode   or phototransistor 
+captures the reflection and translates the light   intensity to a 
+voltage</p>
+      <blockquote>
+        <p align="left"><img src="Python-exemplary_files/ls1.png" width="414" height="265"></p>
+      </blockquote>
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tbody><tr>
+          <td width="66%">Both components can   be mounted in the same 
+housing. In hobby robotics the reflective optical    sensor with 
+transistor output TCRT5000 from VISHAY is widely used. (It   can be 
+purchased from many sources, e.g. 4tronix (http.//4tronix.co.uk)   or by
+ an Ebay search. For detailed information, consult the <a href="http://www.python-exemplary.com/download/tcrt5000.pdf">data sheet</a> and the<a href="http://www.python-exemplary.com/download/tcrt5000-applic.pdf"> application</a> examples.</td>
+          <td width="5%">&nbsp;</td>
+          <td width="29%"><img src="Python-exemplary_files/ls2.png" width="160" height="113"></td>
+        </tr>
+      </tbody></table>     
+      <p><em><br>
+        Aim: </em>
+        <br>
+      Detect the distance to an object using a reflective light barrier 
+and    display the result in the console and (if available) on an 
+attached   display.</p>
+      <p><em>Circuitry:</em><br>
+        We use the TCRT5000 that needs a 5V supply. Connect the line <em>Analog In</em> to any of the ADCs that you have at hand.</p>
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tbody><tr>
+          <td width="39%"><img src="Python-exemplary_files/ls3.png" width="245" height="225"></td>
+          <td width="4%">&nbsp;</td>
+          <td width="57%" valign="top"><p>To learn how to connect your ADC, consult the previous page. <span class="Stil1">Be aware to remove any pull-up resistors on the SDA and SCL lines if you power the ADC with 5V.</span></p>
+          <p>&nbsp;</p></td>
+        </tr>
+      </tbody></table> 
+ <br>    
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tbody><tr>
+          <td width="54%"><img src="Python-exemplary_files/ls4.png" width="339" height="207"></td>
+          <td width="5%">&nbsp;</td>
+          <td width="41%">Phototransistor current (in   mA) versus 
+distance to a reflecting object (mm) (for constant 10V   transistor 
+voltage and a typical reflecting material).</td>
+        </tr>
+      </tbody></table>      
+      <p>Since the   input-output relationship is completely non-linear,
+ it is an algorithmic   problem how to transform the voltage to an 
+approximate distance. As you   may suggest, some kind of interpolation 
+is necessary. We will not do right now and just  display the   output 
+voltage of the sensor. </p>
+      <p>In   many proximity sensor applications, the absolute value of 
+the distance   is not of importance because the sensor is used to 
+trigger an action,   when the distance cross a certain level (from far 
+to near or vice   versa). In this example we turn a light or buzzer on, 
+when the distance   becomes too small (e.g. to stop a moving robot near 
+an obstacle).</p>
+      <p><em>Program:</em><a href="http://www.python-exemplary.com/raspi/rprogs/Infrared1.py">[&#9658;]</a></p>
+<div id="Infrared1"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.8em .8em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000"># Infrared1.py</span>
+<span style="color: #008000"># using the PCF8591 ADC</span>
+
+<span style="color: #0000ff">import</span> smbus
+<span style="color: #0000ff">import</span> time
+<span style="color: #0000ff">import</span> RPi.GPIO <span style="color: #0000ff">as</span> GPIO
+
+
+P_LED = 22
+TRIGGER_LEVEL = 25
+DT = 0.2
+
+<span style="color: #0000ff">def</span> setup():
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(P_LED, GPIO.OUT)
+
+<span style="color: #0000ff">def</span> beep(n):
+    <span style="color: #0000ff">for</span> i <span style="color: #0000ff">in</span> range(n):
+        GPIO.output(P_LED, GPIO.HIGH)
+        time.sleep(0.05)
+        GPIO.output(P_LED, GPIO.LOW)
+        time.sleep(0.05)
+
+bus = smbus.SMBus(1)  <span style="color: #008000"># RPi revision 2 (0 for revision 1)</span>
+i2c_address = 0x48
+setup()
+beep(3) <span style="color: #008000"># to say we are ready</span>
+<span style="color: #0000ff">while</span> True:
+    data = bus.read_byte_data(i2c_address, 0) <span style="color: #008000"># read ch0</span>
+    <span style="color: #0000ff">if</span> data &gt; TRIGGER_LEVEL:
+        beep(2)
+    time.sleep(DT)
+</pre></div>
+
+</div>
+  <a href="javascript:selectText('Infrared1')"><strong>Highlight program code</strong></a>
+  <spam class="tabklein">(Ctrl+C copy, Ctrl+V paste)</spam>  
+  <p>&nbsp;</p>   
+  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+      <td width="71%">Infrared reflective light   barriers are 
+widely-used in industrial products. The optoelectronic   device 
+GP2Y0A21YK fabricated by Sharp is still going strong with good   
+availability all over the world. It is a simple 3-wire device that is   
+powered by 5 V and outputs a voltage below 3.3V that needs no external  
+ components. So it can be easily interfaced with a 3.3V ADC. </td>
+      <td width="5%">&nbsp;</td>
+      <td width="24%"><img src="Python-exemplary_files/ls5.png" width="142" height="109"></td>
+    </tr>
+  </tbody></table>
+  <p align="left">Again the output voltage u is not in a simple relationship to the distance d as we see from from the <a href="http://www.python-exemplary.com/download/GP2Y0A21YK.pdf">data sheet</a>.              But <em>u = f(1/d)</em> may be approximated by a straight line <em>u = mx + b</em> with <em><br>
+    m = 19.8</em> and <em>b = 0.228</em> in the range of <em>d = 7 </em> to <em>d = 80 </em>cm. </p>
+  <p align="center"><img src="Python-exemplary_files/ls6.png" width="470" height="645"></p>
+  <p>Our program shows this approximated distance at the terminal and (if available) on a attached display. </p>
+  <p><em>Program:</em><a href="http://www.python-exemplary.com/raspi/rprogs/Infrared2.py">[&#9658;]</a></p>  
+ <div id="Infrared2"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.8em .8em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000"># Infrared2.py</span>
+<span style="color: #008000"># GP2Y0A21YK sensor with PCF8591 ADC</span>
+
+<span style="color: #0000ff">import</span> smbus
+<span style="color: #0000ff">import</span> time
+<span style="color: #0000ff">from</span> py7seg <span style="color: #0000ff">import</span> Py7Seg <span style="color: #008000"># xxx</span>
+
+bus = smbus.SMBus(1)  <span style="color: #008000"># RPi revision 2 (0 for revision 1)</span>
+i2c_address = 0x48
+ps = Py7Seg() <span style="color: #008000"># xxx</span>
+<span style="color: #008000"># u = mx + b, x = 1/d</span>
+m = 19.8
+b = 0.228
+<span style="color: #0000ff">while</span> True:
+    data = bus.read_byte_data(i2c_address, 0) <span style="color: #008000"># use CH0</span>
+    u = data / 255 * 5
+    d = int(m / (u - b))
+    <span style="color: #0000ff">print</span> <span style="color: #a31515">"d ="</span> ,d, <span style="color: #a31515">"cm"</span>
+    ps.showText(<span style="color: #a31515">"%4d"</span> %d) <span style="color: #008000"># xxx</span>
+    time.sleep(0.1)
+</pre></div>
+</div>
+  <a href="javascript:selectText('Infrared2')"><strong>Highlight program code</strong></a>
+  <spam class="tabklein">(Ctrl+C copy, Ctrl+V paste)</spam>  
+  <p><em>Remarks:</em> <br>
+    If you do not have a ELV display or you use another display, comment out or modify the lines marked with <em>xxx</em>. </p>
+  </td>
+  </tr>
+</tbody></table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+	<br>
+	
+
+</body></html>

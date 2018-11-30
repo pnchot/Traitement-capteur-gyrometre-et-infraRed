@@ -1,0 +1,37 @@
+body  {
+font : normal 13px Verdana,Arial,Helfetica,sans-serif;
+}
+
+
+.bsp{
+font: normal 1em "Courier New", Courier, mono;
+}
+
+.tabnormal{
+font : normal 12px Verdana,Arial,Helfetica,sans-serif;
+letter-spacing:0.8px;
+line-height: 1.7;
+}
+
+.version  {
+font-size : 0.9em;
+font-style : italic;
+margin: 0px;
+} 
+
+ul{ 
+list-style-type: circle;
+}
+
+
+td {
+	font-size: 13px;
+	text-align : justify;
+	}
+
+.f{
+    font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size: 14px;
+	text-align : left;
+}

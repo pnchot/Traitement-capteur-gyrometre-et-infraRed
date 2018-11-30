@@ -1,0 +1,283 @@
+/************************************************************/
+/***** BANNIERE EMPLOI BY ATOMYA RISE ***********************/
+/************************************************************/
+
+.banner { position: relative; border: 1px solid #96B1BE; margin-bottom: 5px; background-color:#dfeaf4; }
+
+#banner300 { width:298px; height:248px; }
+#banner600 { width:598px; height:198px; }
+#banner728 { width:726px; height:88px; }
+
+/* CLIC BANNIERE */
+a.banClicTotal { 
+	position:absolute; 
+	top:-23px; 
+	left:0; 
+	width:calc(100% + 2px); 
+	height:calc(100% + 24px); 
+	cursor:pointer; 
+	z-index:2;
+}
+a.banClicTotal:hover { background-color: #15385c1a; }
+#banner600 a.banClicTotal { width: calc(100% + 93px); height: calc(100% + 23px); }
+#banner728 a.banClicTotal { top:0; left:-23px; width:calc(100% + 115px); height:calc(100% + 2px); }
+
+/* BANDEAU */
+.titreemploi { color:#fff; background-color:#96B1BE; position: absolute; top:0; left:0; font: normal 9pt Tahoma,sans-serif; letter-spacing:3px; }
+.titreemploi span {
+	display:block;
+	position:relative;
+	left:-1px;
+    transform: rotate(270deg) ;
+    -webkit-transform: rotate(270deg) ;
+    -moz-transform: rotate(270deg) ;
+    -o-transform: rotate(270deg) ;
+    -ms-transform: rotate(270deg) ;
+	white-space: nowrap;
+}
+#banner300.banner .titreemploi, #banner600.banner .titreemploi { height:22px; }
+#banner300.banner .titreemploi span, #banner600 .titreemploi span { 
+	top:3px; 
+	transform:none; 
+	-webkit-transform:none; 
+	-moz-transform:none; 
+	-o-transform:none; 
+	-ms-transform:none; 
+	margin:0 auto; 
+	text-align:center; 
+}
+#banner300.banner .titreemploi { width:298px; }
+#banner600 .titreemploi { width:598px; }
+#banner728.banner .titreemploi { height:88px; width:22px; }
+#banner728.banner .titreemploi span { top:50px; }
+
+/* CONTENU */
+.contenu { position: absolute; }
+#banner300 .contenu, #banner600 .contenu { top: 22px; left: 0; height: calc(100% - 23px); width: calc(100% - 1px); }
+#banner728 .contenu { top: 0; left: 22px; height: calc(100% - 1px); width: calc(100% - 23px); }
+
+/* LES INFOS */
+.informations { position:relative; z-index:1;padding: 10px; }
+#banner300 .informations { width: calc(100% - 19px); height: calc(100% - 19px); }
+#banner600 .informations, #banner728 .informations { width: calc(100% - 110px); }
+#banner600 .informations { height: calc(100% - 18px); }
+#banner728 .informations { height: calc(100% - 13px); padding-top: 4px; }
+
+#banner600 .bannerX3 { width: calc(100% - 19px); height: calc(100% - 19px); }
+#banner728 .bannerX3 { width: calc(100% - 19px); height: calc(100% - 12px); }
+
+.banner_info { color:#718999; margin-left:12px; font: normal 9pt Arial,sans-serif; }
+p.banner_info { margin: 8px 0 0 0; }
+.banner_info[role='lienDansTitre'] { margin-left: 4px; }
+
+p[role='titre'] { padding: 0; margin: 5px 0 0; font: bold 13pt Arial,sans-serif; color: #59646a; }
+#banner300 p[role='titre'] { width: 100%; } 
+#banner600 p[role='titre'] { width: calc(100% + 92px); } 
+#banner728 p[role='titre'] { margin: 1px 0 0; width: calc(100% + 90px); padding-bottom: 0; } 
+#banner728 .bannerX3 p[role='titre'] { margin: 3px 0 0; width: calc(100% + 90px); padding-bottom: 2px; } 
+
+#banner600 .bannerX3 p[role='titre'], #banner728 .bannerX3 p[role='titre'] { overflow:hidden; white-space:nowrap; width: calc(100% - 10px); } 
+#banner300 .bannerX3 p[role='titre']:nth-child(n + 2), #banner600 .bannerX3 p[role='titre']:nth-child(n + 2) { margin-top: 10px; } 
+
+p[role='titre'] a:link, p[role='titre'] a:active, p[role='titre'] a:visited { 
+	font: bold 10pt Arial,sans-serif; 
+	color:#5b6f78; 
+	text-decoration:none; 
+} 
+p[role='titre'] a:hover, p[role='titre'] a:hover, p[role='titre'] a:hover { text-decoration:underline; } 
+
+#banner300 .bannerX3 p[role='societeLien'], #banner600 .bannerX3 p[role='societeLien'] { margin: 0 auto 0 20px; }
+
+#banner300 p[role='societeLien'] a:link, #banner300 p[role='societeLien'] a:active, #banner300 p[role='societeLien'] a:visited, 
+#banner600 p[role='societeLien'] a:link, #banner600 p[role='societeLien'] a:active, #banner600 p[role='societeLien'] a:visited, 
+#banner728 p[role='societeLien'] a:link, #banner728 p[role='societeLien'] a:active, #banner728 p[role='societeLien'] a:visited, 
+#banner300 [role='lienDansTitre'] a:link, #banner300 [role='lienDansTitre'] a:active, #banner300 [role='lienDansTitre'] a:visited, 
+#banner600 [role='lienDansTitre'] a:link, #banner600 [role='lienDansTitre'] a:active, #banner600 [role='lienDansTitre'] a:visited, 
+#banner728 [role='lienDansTitre'] a:link, #banner728 [role='lienDansTitre'] a:active, #banner728 [role='lienDansTitre'] a:visited { 
+	font: normal 9pt Arial,sans-serif !important; 
+	color: #718999; 
+	text-decoration: underline; 
+}
+
+/* BOUTON BANNER 600 */
+.boutonLien {
+	background: #417394 url(https://forum.developpez.be/images/buttons/newbtn_middle.png) repeat-x left top;
+	_background-image: none;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	color: rgb(255,255,255);
+	font: normal 9pt Arial,sans-serif;
+	padding: 4px 12px 3px;
+	border: 0;
+	cursor: pointer;
+}
+.boutonLien:first-child { margin-right: 5px; }
+.boutonLien:link, .boutonLien:active, .boutonLien:visited { text-decoration: none; }
+.boutonLien:hover { 
+	background: #5b8dae url(https://forum.developpez.be/images/buttons/newbtn_middle.png) repeat-x left top; 
+	color: rgb(255,255,255); 
+	text-decoration: none; 
+}
+p.btn { position:absolute; right:3px; bottom:10px; color:#243C47; margin: 0; font-size:1em; }
+
+/* LOCALISATION */
+#banner728 p[role='localisation'], #banner728 p[role='infosPoste'], #banner728 p[role='competencesRequises'] { margin:4px 0 0; }
+#banner728 .bannerX3 p[role='localisation'], #banner728 .bannerX3 p[role='infosPoste'], #banner728 .bannerX3 p[role='competencesRequises'] { margin:2px 0 0; }
+#banner300 p[role='localisation'] span.u_ville, 
+#banner600 p[role='localisation'] span.u_ville, 
+#banner728 p[role='localisation'] span.u_ville { font: bold 10pt Arial,sans-serif; color:#5b6f78; }
+
+/* LOGO / NOM SOCIETE */
+#banner300 .u_logo, #banner600 .u_logo, #banner728 .u_logo { 
+	position:absolute; 
+	white-space:nowrap; 
+	font-size:1em; 
+	text-align:center; 
+	bottom:0; 
+	right:4px; 
+	color:#5b6f78; 
+}
+#banner300 .u_logo img, #banner600 .u_logo img, #banner728 .u_logo img { max-width:80px; max-height:80px; position:relative; right:0; bottom:0; }
+#banner300 .u_logo span, #banner600 .u_logo span, #banner728 .u_logo span { 
+	position: relative; 
+	bottom: 9px; 
+	right: 5px; 
+	color: #fff;
+	background-color: #96b1be;
+	border: 1px solid #829aa6;
+	padding: 2px 5px;
+}
+
+/************************************************************/
+/***** THEME BLEU *******************************************/
+/************************************************************/
+
+.c_bleu, .c_cbleu { background-color:#15385c; border-color:#6a8fba; }
+.c_bleu .titreemploi, .c_cbleu .titreemploi { background-color:#6a8fba; }
+.c_bleu a, .c_cbleu a, 
+.c_bleu a:link, .c_bleu a:active, .c_bleu a:visited, .c_bleu .banner_info, .c_bleu .u_ville { color:#fff !important; text-shadow: 1px 1px 0px #000; }
+.c_cbleu a, .c_cbleu a:link, .c_cbleu a:active, .c_cbleu a:visited, .c_cbleu .banner_info, .c_cbleu .u_ville { color:#000 !important; }
+.c_bleu a.boutonLien, .c_cbleu a.boutonLien { color: #fff !important; }
+.c_bleu .u_logo span, .c_cbleu .u_logo span { background-color: #6a8fba !important; border-color: #6a8fba !important; }
+
+/************************************************************/
+/***** THEME CIEL *******************************************/
+/************************************************************/
+
+.c_ciel, .c_cciel { background-color:#8fd1ff; border-color:#004d7e; }
+.c_ciel .titreemploi, .c_cciel .titreemploi { background-color:#004d7e; }
+.c_ciel a, .c_cciel a, 
+.c_ciel a:link, .c_ciel a:active, .c_ciel a:visited, .c_ciel .banner_info, .c_ciel .u_ville { color:#000 !important; }
+.c_cciel a, .c_cciel a:link, .c_cciel a:active, .c_cciel a:visited, .c_cciel .banner_info, .c_cciel .u_ville { color:#000 !important; }
+.c_ciel a.boutonLien, .c_cciel a.boutonLien { color: #fff !important; }
+.c_ciel .u_logo span, .c_cciel .u_logo span { background-color: #004d7e !important; border-color: #004d7e !important; }
+
+/************************************************************/
+/***** THEME JAUNE ******************************************/
+/************************************************************/
+
+.c_jaune, .c_cjaune { background-color:#ffea00; border-color:#ff8700; }
+.c_jaune .titreemploi, .c_cjaune .titreemploi { background-color:#ff8700; }
+.c_jaune a, .c_jaune a:link, .c_jaune a:active, .c_jaune a:visited, .c_jaune .banner_info, .c_jaune .u_ville, 
+.c_cjaune a, .c_cjaune a:link, .c_cjaune a:active, .c_cjaune a:visited, .c_cjaune .banner_info, .c_cjaune .u_ville { color:#000 !important; }
+.c_jaune a.boutonLien, .c_cjaune a.boutonLien {
+	background: #ffa347;
+	background: -moz-radial-gradient(center, ellipse cover,  #ffa347 0%, #ff8700 100%);
+	background: -webkit-radial-gradient(center, ellipse cover,  #ffa347 0%,#ff8700 100%);
+	background: radial-gradient(ellipse at center,  #ffa347 0%,#ff8700 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa347', endColorstr='#ff8700',GradientType=1 );
+	color: #573400  !important;
+}
+.c_jaune a.boutonLien:hover, .c_cjaune a.boutonLien:hover {
+	background: #ffaa5b;
+	background: -moz-radial-gradient(center, ellipse cover,  #ffaa5b 0%, #ff9728 100%);
+	background: -webkit-radial-gradient(center, ellipse cover,  #ffaa5b 0%,#ff9728 100%);
+	background: radial-gradient(ellipse at center,  #ffaa5b 0%,#ff9728 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaa5b', endColorstr='#ff9728',GradientType=1 );
+	color: #291901   !important;
+}
+.c_jaune .u_logo span, .c_cjaune .u_logo span { background-color: #ff8700 !important; border-color: #ff8700 !important; }
+
+/************************************************************/
+/***** THEME VERT *******************************************/
+/************************************************************/
+
+.c_vert, .c_cvert { background-color:#00ffac; border-color:#147152; }
+.c_vert .titreemploi, .c_cvert .titreemploi { background-color:#147152; }
+.c_vert a, .c_vert a:link, .c_vert a:active, .c_vert a:visited, .c_vert .banner_info, .c_vert .u_ville, 
+.c_cvert a, .c_cvert a:link, .c_cvert a:active, .c_cvert a:visited, .c_cvert .banner_info, .c_cvert .u_ville { color:#000 !important; }
+.c_vert a.boutonLien, .c_cvert a.boutonLien {
+	background: #17845c;
+	background: -moz-radial-gradient(center, ellipse cover,  #17845c 0%, #147152 100%);
+	background: -webkit-radial-gradient(center, ellipse cover,  #17845c 0%,#147152 100%);
+	background: radial-gradient(ellipse at center,  #17845c 0%,#147152 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#17845c', endColorstr='#147152',GradientType=1 );
+	color: #fff !important;
+}
+.c_vert a.boutonLien:hover, .c_cvert a.boutonLien:hover {
+	background: #1a9367;
+	background: -moz-radial-gradient(center, ellipse cover,  #1a9367 0%, #147152 100%);
+	background: -webkit-radial-gradient(center, ellipse cover,  #1a9367 0%,#147152 100%);
+	background: radial-gradient(ellipse at center,  #1a9367 0%,#147152 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a9367', endColorstr='#147152',GradientType=1 );
+	color: #fff !important;
+}
+.c_vert .u_logo span, .c_cvert .u_logo span { background-color: #147152 !important; border-color: #147152 !important; }
+
+/************************************************************/
+/***** THEME ROUGE ******************************************/
+/************************************************************/
+
+.c_rouge, .c_crouge { background-color:#ffb2b2; border-color:#711414; }
+.c_rouge .titreemploi, .c_crouge .titreemploi { background-color:#711414; }
+.c_rouge a, .c_rouge a:link, .c_rouge a:active, .c_rouge a:visited, .c_rouge .banner_info, .c_rouge .u_ville, 
+.c_crouge a, .c_crouge a:link, .c_crouge a:active, .c_crouge a:visited, .c_crouge .banner_info, .c_crouge .u_ville { color:#2b0808 !important; }
+.c_rouge a.boutonLien, .c_crouge a.boutonLien {
+	background: #911a1a;
+	background: -moz-linear-gradient(top,  #911a1a 0%, #711414 100%);
+	background: -webkit-linear-gradient(top,  #911a1a 0%,#711414 100%);
+	background: linear-gradient(to bottom,  #911a1a 0%,#711414 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#911a1a', endColorstr='#711414',GradientType=0 );
+	color: #fff !important;
+}
+.c_rouge a.boutonLien:hover, .c_crouge a.boutonLien:hover {
+	background: #a01c1c;
+	background: -moz-linear-gradient(top,  #a01c1c 0%, #711414 100%);
+	background: -webkit-linear-gradient(top,  #a01c1c 0%,#711414 100%);
+	background: linear-gradient(to bottom,  #a01c1c 0%,#711414 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a01c1c', endColorstr='#711414',GradientType=0 );
+	color: #fff !important;
+}
+.c_rouge .u_logo span, .c_crouge .u_logo span { background-color: #711414 !important; border-color: #711414 !important; }
+
+/************************************************************/
+/***** THEME NOIR *******************************************/
+/************************************************************/
+
+.c_noir, .c_cnoir { background-color:#d1d1d1; border-color:#000; }
+.c_noir .titreemploi, .c_cnoir .titreemploi { background-color:#000; }
+.c_noir a, .c_noir a:link, .c_noir a:active, .c_noir a:visited, .c_noir .banner_info, .c_noir .u_ville, 
+.c_cnoir a, .c_cnoir a:link, .c_cnoir a:active, .c_cnoir a:visited, .c_cnoir .banner_info, .c_cnoir .u_ville { color:#000 !important; }
+.c_noir a.boutonLien, .c_cnoir a.boutonLien {
+	background: #45484d;
+	background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%);
+	background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%);
+	background: linear-gradient(to bottom,  #45484d 0%,#000000 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 );
+	color: #fff !important;
+}
+.c_noir a.boutonLien:hover, .c_cnoir a.boutonLien:hover {
+	background: #575b60;
+	background: -moz-linear-gradient(top,  #575b60 0%, #000000 100%);
+	background: -webkit-linear-gradient(top,  #575b60 0%,#000000 100%);
+	background: linear-gradient(to bottom,  #575b60 0%,#000000 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#575b60', endColorstr='#000000',GradientType=0 );
+	color: #fff !important;
+}
+.c_noir .u_logo span, .c_cnoir .u_logo span { background-color: #000 !important; border-color: #000 !important; }
+
+/************************************************************/
+/***** SUPPRESSION FOND SUR THEME ***************************/
+/************************************************************/
+.c_cdefaut, .c_cbleu, .c_cjaune, .c_cvert, .c_crouge, .c_cnoir { background-color:#fff; }

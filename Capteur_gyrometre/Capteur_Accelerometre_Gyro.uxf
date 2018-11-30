@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>370</x>
+      <y>0</y>
+      <w>450</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>I2c
+--
+-busId: int
+--
++init(busId = 1)
++del():n: boolean
++combineLoHi(loByte:int8,hiByte:int8)
++combineSignedLoHi(loByte:int8, hiByte:int8)
++combineXLoLoHi(xloByte:int16, loByte:int8, hiByte:int8)
++combineSignedXLoLoHi(xloByte:int16, loByte:int8, hiByte:int8)
++getSensorRawLoHi1(address:hex, outRegs:list)
++getSensorRawXLoLoHi1(address, outRegs)
++eadRegister(address:hex, register:hex)
++readRegisters(address, register, count)
++read(address)
++writeRegister(address, register, value)
++write(address, value):
++testRegister(address, register)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>320</y>
+      <w>410</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>LSM6DS33
+--
+-init()
+-del()
++enableLSM(accelerometer = True, gyroscope = True)
++getAccelerometerRaw()
++getGyroscopeRaw()
++getIMURaw():
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>270</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>510</y>
+      <w>410</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>AltIMU
+--
+-init()
+-del()
++enable(accelerometer = True,gyroscope = True)
++calibrateGyroAngles(xCal = 0.0, yCal = 0.0, zCal = 0.0)
++getGyroRotationRates()
++trackGyroAngles(deltaT = 0.02)
++getAccelerometerAngles()
++getComplementaryAngles(deltaT = 0.05)
++getKalmanAngles(deltaT = 0.05)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>440</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+</diagram>
